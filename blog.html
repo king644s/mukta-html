@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog | Mukta Exports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="sticky-top shadow-sm">
+      <nav class="navbar navbar-expand-lg bg-glass py-3">
+        <div class="container">
+          <a class="navbar-brand d-flex align-items-center" href="index.html#hero">
+            <img src="assets/muktalogo.svg" alt="Mukta Exports" height="48" class="me-2" />
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-3">
+              <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="products.html" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
+                <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+                  <li><a class="dropdown-item" href="spices.html">Whole Spices</a></li>
+                  <li><a class="dropdown-item" href="seeds.html">Oil Seeds</a></li>
+                  <li><a class="dropdown-item" href="powders.html">Spice Powders</a></li>
+                </ul>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="certificates.html">Certificates</a></li>
+              <li class="nav-item"><a class="nav-link active" href="blog.html" aria-current="page">Blog</a></li>
+              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+            <div class="ms-lg-4 pt-3 pt-lg-0">
+              <a class="btn btn-primary px-4 py-2 rounded-3" href="brochure.html">E Brochure</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="py-5">
+      <div class="container">
+        <section class="text-center mx-auto mb-5" style="max-width: 720px;" data-fade>
+          <p class="section-eyebrow mb-3">Insights</p>
+          <h1 class="section-title mb-3">Stories from the export floor, sourcing network, and packaging labs</h1>
+          <p class="text-muted-custom fs-5">
+            Follow the Mukta Exports journal for sourcing etiquette, certification walkthroughs, and ways to mirror the success of Zest n Zing or VLC Spices when building your own label.
+          </p>
+        </section>
+
+        <section class="row g-4" data-fade>
+          <div class="col-md-4">
+            <article class="card-glow p-4 h-100">
+              <p class="text-uppercase small text-primary mb-2">January 5, 2025</p>
+              <h2 class="h5">Private-label spice trends for 2025</h2>
+              <p class="text-muted-custom small mb-3">How global retailers are leveraging Indian spice partners for bold flavours, competitive pricing, and premium presentation.</p>
+              <a class="text-primary fw-semibold" href="contact.html">Discuss this topic →</a>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card-glow p-4 h-100">
+              <p class="text-uppercase small text-primary mb-2">December 18, 2024</p>
+              <h2 class="h5">Dehydrated aromatics powering quick-service menus</h2>
+              <p class="text-muted-custom small mb-3">Why dehydrated garlic and onion reduce prep time while maintaining heritage taste.</p>
+              <a class="text-primary fw-semibold" href="contact.html">Discuss this topic →</a>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card-glow p-4 h-100">
+              <p class="text-uppercase small text-primary mb-2">November 30, 2024</p>
+              <h2 class="h5">Packaging innovations inspired by VLC Spices</h2>
+              <p class="text-muted-custom small mb-3">Stand-up pouches, PET grinders, and tin cans that optimise shelf impact and protect volatile oils.</p>
+              <a class="text-primary fw-semibold" href="contact.html">Discuss this topic →</a>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="py-4">
+      <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+        <p class="mb-0 small">© <span id="year">2025</span> Mukta Exports. All rights reserved.</p>
+        <div class="d-flex gap-4 small">
+          <a href="mailto:hello@muktaexports.com">hello@muktaexports.com</a>
+          <a href="tel:+910000000000">+91 00000 00000</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  </body>
+</html>
