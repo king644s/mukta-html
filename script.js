@@ -199,16 +199,50 @@ const initDifferentiatorCardsAnimation = () => {
       ease: "none",
       scrollTrigger: {
         trigger: wrapper,
-        start: "top " + (60 + 10 * i),
-        end: "bottom 550",
+        start: "top-=100 top",
+        end: "bottom-=350 top",
         endTrigger: ".diff-wrapper",
         scrub: true,
         pin: wrapper,
         pinSpacing: false,
         id: i + 1,
+        // markers: true,
       },
     });
   });
+};
+
+const initLayeredPanels = () => {
+  if (!ensureScrollTrigger()) return;
+
+  const container = document.querySelector("#layered-container");
+  if (!container) return;
+
+  gsap.to(".panel:not(:last-child)", {
+    yPercent: -100,
+    ease: "none",
+    stagger: 0.5,
+    scrollTrigger: {
+      trigger: "#layered-container",
+      start: "top bottom",
+      end: "bottom bottom",
+      scrub: true,
+      pin: false,
+      markers: true,
+    }
+  });
+  
+  gsap.set(".panel", {
+    zIndex: (i, target, targets) => targets.length - i
+  });
+};
+
+const setFooterYear = () => {
+  const yearTag = document.getElementById("year");
+  if (!yearTag) return;
+
+  const currentYear = new Date().getFullYear();
+  yearTag.textContent = currentYear;
 };
 
 const init = () => {
@@ -218,6 +252,8 @@ const init = () => {
   initSmoothScroll();
   initHeroSlider();
   initDifferentiatorCardsAnimation();
+  initLayeredPanels();
+  setFooterYear();
 };
 
 document.addEventListener("DOMContentLoaded", init);
