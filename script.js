@@ -228,7 +228,7 @@ const initLayeredPanels = () => {
       end: "bottom bottom",
       scrub: true,
       pin: false,
-      markers: true,
+      // markers: true,
     }
   });
   
