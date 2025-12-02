@@ -212,30 +212,6 @@ const initDifferentiatorCardsAnimation = () => {
   });
 };
 
-const initLayeredPanels = () => {
-  if (!ensureScrollTrigger()) return;
-
-  const container = document.querySelector("#layered-container");
-  if (!container) return;
-
-  gsap.to(".panel:not(:last-child)", {
-    yPercent: -100,
-    ease: "none",
-    stagger: 0.5,
-    scrollTrigger: {
-      trigger: "#layered-container",
-      start: "top bottom",
-      end: "bottom bottom",
-      scrub: true,
-      pin: false,
-      // markers: true,
-    }
-  });
-  
-  gsap.set(".panel", {
-    zIndex: (i, target, targets) => targets.length - i
-  });
-};
 
 const setFooterYear = () => {
   const yearTag = document.getElementById("year");
@@ -245,6 +221,311 @@ const setFooterYear = () => {
   yearTag.textContent = currentYear;
 };
 
+// Validation functions
+const validators = {
+  name: (value) => {
+    if (!value || value.trim().length === 0) {
+      return "Full name is required";
+    }
+    if (value.trim().length < 2) {
+      return "Name must be at least 2 characters long";
+    }
+    if (value.trim().length > 100) {
+      return "Name must be less than 100 characters";
+    }
+    if (!/^[a-zA-Z\s'-]+$/.test(value.trim())) {
+      return "Name can only contain letters, spaces, hyphens, and apostrophes";
+    }
+    return null;
+  },
+  
+  email: (value) => {
+    if (!value || value.trim().length === 0) {
+      return "Email address is required";
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(value.trim())) {
+      return "Please enter a valid email address";
+    }
+    if (value.trim().length > 255) {
+      return "Email address is too long";
+    }
+    return null;
+  },
+  
+  phone: (value) => {
+    if (!value || value.trim().length === 0) {
+      return "Phone number is required";
+    }
+    // Remove spaces, dashes, parentheses, and plus signs for validation
+    const cleaned = value.replace(/[\s\-\(\)\+]/g, "");
+    if (!/^\d{10,15}$/.test(cleaned)) {
+      return "Please enter a valid phone number (10-15 digits)";
+    }
+    return null;
+  },
+  
+  company: (value) => {
+    // Company is optional, but if provided, validate it
+    if (value && value.trim().length > 0) {
+      if (value.trim().length < 2) {
+        return "Company name must be at least 2 characters long";
+      }
+      if (value.trim().length > 100) {
+        return "Company name must be less than 100 characters";
+      }
+    }
+    return null;
+  },
+  
+  customerType: (value) => {
+    if (!value || value === "") {
+      return "Please select a customer type";
+    }
+    if (value !== "b2b" && value !== "individual") {
+      return "Please select a valid customer type";
+    }
+    return null;
+  },
+  
+  message: (value) => {
+    if (!value || value.trim().length === 0) {
+      return "Message is required";
+    }
+    if (value.trim().length < 10) {
+      return "Message must be at least 10 characters long";
+    }
+    if (value.trim().length > 1000) {
+      return "Message must be less than 1000 characters";
+    }
+    return null;
+  }
+};
+
+const showFieldError = (input, errorMessage) => {
+  // Remove existing error message
+  const existingError = input.parentElement.querySelector(".invalid-feedback");
+  if (existingError) {
+    existingError.remove();
+  }
+  
+  // Add error class
+  input.classList.add("is-invalid");
+  input.classList.remove("is-valid");
+  
+  // Create and insert error message
+  const errorDiv = document.createElement("div");
+  errorDiv.className = "invalid-feedback";
+  errorDiv.textContent = errorMessage;
+  input.parentElement.appendChild(errorDiv);
+};
+
+const showFieldSuccess = (input) => {
+  // Remove existing error message
+  const existingError = input.parentElement.querySelector(".invalid-feedback");
+  if (existingError) {
+    existingError.remove();
+  }
+  
+  // Add success class
+  input.classList.remove("is-invalid");
+  input.classList.add("is-valid");
+};
+
+const validateField = (input, validator) => {
+  const value = input.value;
+  const error = validator(value);
+  
+  if (error) {
+    showFieldError(input, error);
+    return false;
+  } else {
+    showFieldSuccess(input);
+    return true;
+  }
+};
+
+const validateForm = (form) => {
+  let isValid = true;
+  
+  // Validate name
+  const nameInput = form.querySelector('input[name="name"]');
+  if (nameInput && !validateField(nameInput, validators.name)) {
+    isValid = false;
+  }
+  
+  // Validate email
+  const emailInput = form.querySelector('input[name="email"]');
+  if (emailInput && !validateField(emailInput, validators.email)) {
+    isValid = false;
+  }
+  
+  // Validate phone
+  const phoneInput = form.querySelector('input[name="phone"]');
+  if (phoneInput && !validateField(phoneInput, validators.phone)) {
+    isValid = false;
+  }
+  
+  // Validate company (optional)
+  const companyInput = form.querySelector('input[name="company"]');
+  if (companyInput && companyInput.value.trim().length > 0) {
+    if (!validateField(companyInput, validators.company)) {
+      isValid = false;
+    }
+  }
+  
+  // Validate customer type
+  const customerTypeInput = form.querySelector('select[name="customerType"]');
+  if (customerTypeInput && !validateField(customerTypeInput, validators.customerType)) {
+    isValid = false;
+  }
+  
+  // Validate message
+  const messageInput = form.querySelector('textarea[name="message"]');
+  if (messageInput && !validateField(messageInput, validators.message)) {
+    isValid = false;
+  }
+  
+  return isValid;
+};
+
+const handleContactForm = (formId, messageId) => {
+  const form = document.getElementById(formId);
+  const messageDiv = document.getElementById(messageId);
+  
+  if (!form || !messageDiv) return;
+
+  // Add real-time validation on blur
+  const nameInput = form.querySelector('input[name="name"]');
+  const emailInput = form.querySelector('input[name="email"]');
+  const phoneInput = form.querySelector('input[name="phone"]');
+  const companyInput = form.querySelector('input[name="company"]');
+  const customerTypeInput = form.querySelector('select[name="customerType"]');
+  const messageInput = form.querySelector('textarea[name="message"]');
+
+  if (nameInput) {
+    nameInput.addEventListener("blur", () => validateField(nameInput, validators.name));
+    nameInput.addEventListener("input", () => {
+      if (nameInput.classList.contains("is-invalid")) {
+        validateField(nameInput, validators.name);
+      }
+    });
+  }
+
+  if (emailInput) {
+    emailInput.addEventListener("blur", () => validateField(emailInput, validators.email));
+    emailInput.addEventListener("input", () => {
+      if (emailInput.classList.contains("is-invalid")) {
+        validateField(emailInput, validators.email);
+      }
+    });
+  }
+
+  if (phoneInput) {
+    phoneInput.addEventListener("blur", () => validateField(phoneInput, validators.phone));
+    phoneInput.addEventListener("input", () => {
+      if (phoneInput.classList.contains("is-invalid")) {
+        validateField(phoneInput, validators.phone);
+      }
+    });
+  }
+
+  if (companyInput) {
+    companyInput.addEventListener("blur", () => {
+      if (companyInput.value.trim().length > 0) {
+        validateField(companyInput, validators.company);
+      }
+    });
+    companyInput.addEventListener("input", () => {
+      if (companyInput.classList.contains("is-invalid") && companyInput.value.trim().length > 0) {
+        validateField(companyInput, validators.company);
+      }
+    });
+  }
+
+  if (customerTypeInput) {
+    customerTypeInput.addEventListener("change", () => validateField(customerTypeInput, validators.customerType));
+  }
+
+  if (messageInput) {
+    messageInput.addEventListener("blur", () => validateField(messageInput, validators.message));
+    messageInput.addEventListener("input", () => {
+      if (messageInput.classList.contains("is-invalid")) {
+        validateField(messageInput, validators.message);
+      }
+    });
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    
+    // Clear previous messages
+    messageDiv.style.display = "none";
+    
+    // Validate all fields
+    if (!validateForm(form)) {
+      messageDiv.className = "mt-3 text-center text-danger";
+      messageDiv.innerHTML = '<i class="bi bi-exclamation-circle-fill me-2"></i>Please correct the errors in the form before submitting.';
+      messageDiv.style.display = "block";
+      
+      // Scroll to first error
+      const firstError = form.querySelector(".is-invalid");
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+        firstError.focus();
+      }
+      return;
+    }
+    
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get("name").trim(),
+      email: formData.get("email").trim(),
+      phone: formData.get("phone").trim(),
+      company: formData.get("company")?.trim() || "N/A",
+      customerType: formData.get("customerType"),
+      message: formData.get("message").trim(),
+    };
+
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`Contact Form Submission - ${data.customerType === "b2b" ? "B2B" : "Individual"} Customer`);
+    const body = encodeURIComponent(
+      `Name: ${data.name}\n` +
+      `Email: ${data.email}\n` +
+      `Phone: ${data.phone}\n` +
+      `Company: ${data.company}\n` +
+      `Customer Type: ${data.customerType === "b2b" ? "B2B Customer (Wholesale/Business)" : "Individual Customer"}\n\n` +
+      `Message:\n${data.message}`
+    );
+    
+    const mailtoLink = `mailto:info@muktaexports.com?subject=${subject}&body=${body}`;
+    
+    // Show success message
+    messageDiv.className = "mt-3 text-center text-success";
+    messageDiv.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>Thank you! Your message has been prepared. Opening your email client...';
+    messageDiv.style.display = "block";
+    
+    // Open mailto link
+    window.location.href = mailtoLink;
+    
+    // Reset form after a delay
+    setTimeout(() => {
+      form.reset();
+      // Remove validation classes
+      form.querySelectorAll(".is-valid, .is-invalid").forEach(el => {
+        el.classList.remove("is-valid", "is-invalid");
+      });
+      form.querySelectorAll(".invalid-feedback").forEach(el => el.remove());
+      messageDiv.style.display = "none";
+    }, 5000);
+  });
+};
+
+const initContactForms = () => {
+  handleContactForm("contactForm", "formMessage");
+  handleContactForm("contactFormHome", "formMessageHome");
+};
+
 const init = () => {
   initCounters();
   initScrollAnimations();
@@ -252,8 +533,8 @@ const init = () => {
   initSmoothScroll();
   initHeroSlider();
   initDifferentiatorCardsAnimation();
-  initLayeredPanels();
   setFooterYear();
+  initContactForms();
 };
 
 document.addEventListener("DOMContentLoaded", init);

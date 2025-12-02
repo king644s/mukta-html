@@ -13,7 +13,7 @@
   </head>
   <body>
     <header class="sticky-top shadow-sm">
-      <nav class="navbar navbar-expand-lg bg-glass py-3">
+      <nav id="mainNav" class="navbar navbar-expand-lg bg-glass py-3">
         <div class="container">
           <a class="navbar-brand d-flex align-items-center" href="index.html#hero">
             <img src="assets/muktalogo.svg" alt="Mukta Exports" height="48" class="me-2" />
@@ -22,7 +22,8 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-3">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-3 justify-content-lg-center text-center text-lg-start">
+              <li class="nav-item"><a class="nav-link" href="index.html#hero">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="products.html" id="productsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
@@ -37,7 +38,7 @@
               <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
             <div class="ms-lg-4 pt-3 pt-lg-0">
-              <a class="btn btn-primary px-4 py-2 rounded-3" href="brochure.html">E Brochure</a>
+              <a class="btn btn-primary px-4 py-2 rounded-3 active" href="brochure.html">E Brochure</a>
             </div>
           </div>
         </div>
@@ -49,47 +50,112 @@
         <section class="text-center mx-auto mb-5" style="max-width: 720px;" data-fade>
           <p class="section-eyebrow mb-3">E-Brochure</p>
           <h1 class="section-title mb-3">Download the Mukta Exports playbook</h1>
-          <p class="text-muted-custom fs-5">Get the latest PDF brochures mirroring the rich content found on Zest n Zing and VLC Spices—complete with product lists, packaging choices, private-label workflow, and certification snapshots. Share them with procurement teams or prospective distributors.</p>
+          <p class="text-muted-custom fs-5">Access comprehensive product catalogs, packaging options, private-label workflows, and certification documentation. Share them with procurement teams or prospective distributors.</p>
         </section>
 
-        <section class="space-y-4" data-fade>
-          <div class="card-glow p-4 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
-            <div>
-              <h2 class="h5 mb-2">Mukta Exports – Master Catalog</h2>
-              <p class="text-muted-custom small mb-0">Whole spices, seeds, powders, dehydrated aromatics, and packaging options inspired by VLC and Zest n Zing.</p>
+        <section class="row g-4" data-fade>
+          <div class="col-12">
+            <div class="card-glow p-4 p-lg-5 brochure-card h-100">
+              <div class="d-flex align-items-start gap-4">
+                <div class="brochure-icon">
+                  <i class="bi bi-file-earmark-pdf-fill"></i>
+                </div>
+                <div class="flex-grow-1">
+                  <h2 class="h4 fw-bold mb-3">Master Product Catalog</h2>
+                  <p class="text-muted-custom mb-4">Comprehensive guide featuring our complete range of whole spices, seeds, powders, dehydrated aromatics, and premium packaging solutions. Perfect for procurement teams and distributors.</p>
+                  <ul class="list-unstyled mb-4 small text-muted-custom">
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Complete product listings with specifications</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> High-quality product photography</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Packaging options and customization details</li>
+                    <li class="mb-0"><i class="bi bi-check-circle-fill text-primary me-2"></i> Export-ready documentation overview</li>
+                  </ul>
+                  <button class="btn btn-primary btn-lg px-4" data-download="brochure">
+                    <i class="bi bi-download me-2"></i>Download PDF Catalog
+                  </button>
+                </div>
+              </div>
             </div>
-            <button class="btn btn-primary" data-download="brochure">Download PDF</button>
           </div>
-          <div class="card-glow p-4 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
-            <div>
-              <h2 class="h5 mb-2">Private Label Dossier</h2>
-              <p class="text-muted-custom small mb-0">Process overview covering artwork, compliance literature, QA, and dispatch timelines.</p>
+          <div class="col-md-6">
+            <div class="card-glow p-4 p-lg-5 brochure-card h-100">
+              <div class="brochure-icon mb-3">
+                <i class="bi bi-tags-fill"></i>
+              </div>
+              <h2 class="h5 fw-bold mb-3">Private Label Dossier</h2>
+              <p class="text-muted-custom small mb-4">Complete process overview covering custom artwork, compliance literature, quality assurance protocols, and dispatch timelines for your private-label requirements.</p>
+              <a class="btn btn-outline-primary w-100" href="mailto:info@muktaexports.com?subject=Private%20Label%20Dossier">
+                <i class="bi bi-envelope me-2"></i>Request via Email
+              </a>
             </div>
-            <a class="btn btn-outline-primary" href="mailto:info@muktaexports.com?subject=Private%20Label%20Dossier">Request via Email</a>
           </div>
-          <div class="card-glow p-4 d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3">
-            <div>
-              <h2 class="h5 mb-2">Certifications & Lab Test Pack</h2>
-              <p class="text-muted-custom small mb-0">ISO, HACCP, HALAL, ZED, GMP, and sample COAs to reassure your procurement teams.</p>
+          <div class="col-md-6">
+            <div class="card-glow p-4 p-lg-5 brochure-card h-100">
+              <div class="brochure-icon mb-3">
+                <i class="bi bi-shield-check-fill"></i>
+              </div>
+              <h2 class="h5 fw-bold mb-3">Certifications & Lab Test Pack</h2>
+              <p class="text-muted-custom small mb-4">Complete certification portfolio including ISO, HACCP, HALAL, ZED, GMP, and sample Certificates of Analysis to reassure your procurement and quality teams.</p>
+              <a class="btn btn-outline-primary w-100" href="mailto:info@muktaexports.com?subject=Certification%20Pack">
+                <i class="bi bi-envelope me-2"></i>Request via Email
+              </a>
             </div>
-            <a class="btn btn-outline-primary" href="mailto:info@muktaexports.com?subject=Certification%20Pack">Request via Email</a>
           </div>
         </section>
       </div>
     </main>
 
-    <footer class="py-4">
-      <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
-        <p class="mb-0 small">© <span id="year">2025</span> Mukta Exports. All rights reserved.</p>
-        <div class="d-flex gap-4 small">
-          <a href="mailto:hello@muktaexports.com">hello@muktaexports.com</a>
-          <a href="tel:+910000000000">+91 00000 00000</a>
+    <footer class="footer-main">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section footer-brand">
+            <div class="footer-brand-header">
+              <img src="assets/mukta-icon.svg" alt="Mukta Exports" height="40" class="footer-logo" />
+              <span class="footer-brand-name">Mukta Exports</span>
+            </div>
+            <p class="footer-tagline">Premium quality spices, seeds, and powders for global markets.</p>
+          </div>
+          
+          <div class="footer-section footer-nav">
+            <h5 class="footer-heading">Main Pages</h5>
+            <ul class="footer-links">
+              <li><a href="index.html#hero">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="products.html">Products</a></li>
+              <li><a href="certificates.html">Certificates</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="brochure.html">E Brochure</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section footer-nav">
+            <h5 class="footer-heading">Company</h5>
+            <ul class="footer-links">
+              <li><a href="contact.html">Contact Us</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="products.html">Services</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section footer-contact">
+            <h5 class="footer-heading">Contact</h5>
+            <div class="footer-contact-info">
+              <p><span>Email:</span> <a href="mailto:info@muktaexports.com">info@muktaexports.com</a></p>
+              <p><span>Phone:</span> <a href="tel:+917666666985">+91 76666 66985</a></p>
+              <p class="footer-address">
+                C/16, Beliram Industrial Estate, 1st Floor,<br>
+                S.V. Road, Dahisar (E), Mumbai - 400068
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-copyright">
+          <p class="mb-0">© <span id="year">2025</span> Mukta Exports. All rights reserved.</p>
         </div>
       </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="script.js"></script>
-    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
   </body>
 </html>
