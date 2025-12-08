@@ -559,7 +559,7 @@ html, body {
 }
 
 .footer-section {
-  display: flex;
+  display: flex; 
   flex-direction: column;
 }
 
