@@ -259,6 +259,10 @@ html, body {
   text-align: center;
   color: #fff;
   padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .hero-controls {
@@ -334,6 +338,36 @@ html, body {
   line-height: 1.1;
 }
 
+/* Hero content consistency */
+.hero-eyebrow {
+  margin-bottom: 1rem !important;
+  letter-spacing: 0.3em;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.hero-heading,
+.hero-title {
+  margin-bottom: 1.25rem !important;
+  line-height: 1.15;
+  max-width: 100%;
+}
+
+.hero-lead {
+  font-size: clamp(1.1rem, 2vw, 1.35rem) !important;
+  font-weight: 600;
+  line-height: 1.6;
+  margin-bottom: 1.25rem !important;
+  max-width: 100%;
+}
+
+.hero-support {
+  font-size: clamp(1rem, 1.5vw, 1.15rem) !important;
+  line-height: 1.7;
+  margin-bottom: 2rem !important;
+  max-width: 100%;
+}
+
 .section-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.4em;
@@ -397,6 +431,19 @@ html, body {
   font-weight: 600;
 }
 
+/* Ensure consistent card image heights in product listing rows */
+.row:has(.product-card) .card .card-img-top,
+.row.g-4 .card .card-img-top {
+  height: 240px;
+  object-fit: cover;
+}
+
+.row:has(.product-card) .card,
+.row.g-4 .card {
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
 .check-list {
   list-style: none;
   padding-left: 0;
@@ -445,14 +492,55 @@ html, body {
   justify-content: center;
 }
 
+/* Ensure all parent elements allow sticky positioning */
+main {
+  overflow: visible !important;
+}
+
+#differentiators {
+  overflow: visible !important;
+}
+
+#differentiators .container {
+  overflow: visible !important;
+}
+
+#differentiators .row {
+  overflow: visible !important;
+}
+
 .differentiator-layout {
   align-items: flex-start;
+  position: relative;
+  min-height: 100vh;
+  overflow: visible !important;
+}
+
+/* Ensure parent container matches scrollable content height for sticky positioning */
+.differentiator-layout > .col-lg-7 {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: auto;
+}
+
+.differentiator-layout > .col-lg-7 .diff-scroll-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .differentiator-layout > .col-lg-5 {
+  position: -webkit-sticky;
   position: sticky;
   top: 100px;
   align-self: flex-start;
+  z-index: 10;
+  height: fit-content;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  will-change: position;
 }
 
 .differentiator-points li {
@@ -463,6 +551,7 @@ html, body {
 
 .diff-scroll-area {
   position: relative;
+  min-height: 100%;
 }
 
 .diff-spacer {
@@ -695,7 +784,6 @@ html, body {
     transform: none !important;
     transition: none !important;
     visibility: visible !important;
-    display: block !important;
   }
   
   .fade-in {
@@ -704,22 +792,22 @@ html, body {
     visibility: visible !important;
   }
   
-  /* Ensure product cards and all cards are visible */
-  .product-card,
-  .card,
-  .row[data-fade] > *,
-  section[data-fade] > * {
+  /* Ensure all nested elements inside [data-fade] are visible */
+  [data-fade] * {
     opacity: 1 !important;
     transform: none !important;
     visibility: visible !important;
-    display: block !important;
   }
   
-  /* Ensure Bootstrap columns are visible */
-  .col-md-6,
-  .col-lg-4,
-  .col-md-4 {
+  /* Ensure product cards and all cards are visible */
+  [data-fade] .product-card,
+  [data-fade] .card,
+  [data-fade] .col-md-6,
+  [data-fade] .col-lg-4,
+  [data-fade] .col-md-4,
+  [data-fade] .col-sm-6 {
     opacity: 1 !important;
+    transform: none !important;
     visibility: visible !important;
   }
 }
@@ -753,19 +841,22 @@ html, body {
     padding: 1rem;
   }
   
-  .hero-title {
+  .hero-title,
+  .hero-heading {
     font-size: 1.75rem;
     line-height: 1.2;
-    margin-bottom: 0.75rem !important;
+    margin-bottom: 1rem !important;
   }
   
   .hero-lead {
     font-size: 0.95rem !important;
-    margin-bottom: 0.75rem !important;
+    line-height: 1.5;
+    margin-bottom: 1rem !important;
   }
   
   .hero-support {
     font-size: 0.875rem !important;
+    line-height: 1.6;
     margin-bottom: 1.5rem !important;
     display: none; /* Hide on very small screens */
   }
@@ -773,6 +864,8 @@ html, body {
   .hero-eyebrow {
     font-size: 0.65rem;
     letter-spacing: 0.25em;
+    margin-bottom: 0.75rem !important;
+    line-height: 1.4;
   }
   
   .hero-controls {
@@ -954,16 +1047,27 @@ html, body {
 
 /* Small Devices (landscape phones, 576px - 767px) */
 @media (min-width: 576px) and (max-width: 767.98px) {
-  .hero-title {
+  .hero-title,
+  .hero-heading {
     font-size: 2rem;
+    margin-bottom: 1.125rem !important;
+    line-height: 1.15;
   }
   
   .hero-lead {
     font-size: 1rem !important;
+    line-height: 1.55;
+    margin-bottom: 1.125rem !important;
   }
   
   .hero-support {
     font-size: 0.95rem !important;
+    line-height: 1.65;
+    margin-bottom: 1.75rem !important;
+  }
+  
+  .hero-eyebrow {
+    margin-bottom: 0.875rem !important;
   }
   
   .hero-controls {
@@ -1004,12 +1108,31 @@ html, body {
 
 /* Medium Devices (tablets, 768px - 991px) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-  .hero-title {
+  .hero-title,
+  .hero-heading {
     font-size: 2.5rem;
+    margin-bottom: 1.25rem !important;
+    line-height: 1.15;
   }
   
   .hero-content {
     padding: 2rem;
+  }
+  
+  .hero-lead {
+    font-size: 1.15rem !important;
+    line-height: 1.6;
+    margin-bottom: 1.25rem !important;
+  }
+  
+  .hero-support {
+    font-size: 1rem !important;
+    line-height: 1.7;
+    margin-bottom: 2rem !important;
+  }
+  
+  .hero-eyebrow {
+    margin-bottom: 1rem !important;
   }
   
   .section-title {
@@ -1061,25 +1184,63 @@ html, body {
     margin: 0 auto;
   }
   
-  .hero-title {
+  .hero-title,
+  .hero-heading {
     font-size: clamp(2.5rem, 4vw, 3.5rem);
+    margin-bottom: 1.25rem !important;
+    line-height: 1.15;
+  }
+  
+  .hero-lead {
+    font-size: clamp(1.15rem, 1.8vw, 1.3rem) !important;
+    line-height: 1.6;
+    margin-bottom: 1.25rem !important;
+  }
+  
+  .hero-support {
+    font-size: clamp(1.05rem, 1.4vw, 1.15rem) !important;
+    line-height: 1.7;
+    margin-bottom: 2rem !important;
+  }
+  
+  .hero-eyebrow {
+    margin-bottom: 1rem !important;
   }
   
   /* Re-enable sticky for differentiator on desktop */
   .differentiator-layout > .col-lg-5 {
-    position: sticky;
-    top: 100px;
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 100px !important;
+    z-index: 10 !important;
+    height: fit-content;
+    max-height: calc(100vh - 120px);
   }
 }
 
 /* Extra Large Devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  .hero-title {
+  .hero-title,
+  .hero-heading {
     font-size: 3.75rem;
+    margin-bottom: 1.25rem !important;
+    line-height: 1.1;
   }
   
   .hero-content {
     max-width: 1000px;
+  }
+  
+  .hero-lead {
+    font-size: 1.35rem !important;
+    line-height: 1.6;
+    margin-bottom: 1.25rem !important;
+  }
+  
+  .hero-support {
+    font-size: 1.15rem !important;
+    line-height: 1.7;
+    margin-bottom: 2rem !important;
   }
   
   .section-title {
@@ -1104,18 +1265,26 @@ html, body {
     padding: 1rem;
   }
   
-  .hero-title {
+  .hero-title,
+  .hero-heading {
     font-size: 1.5rem;
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0.75rem !important;
+    line-height: 1.2;
   }
   
   .hero-lead {
     font-size: 0.85rem !important;
-    margin-bottom: 0.5rem !important;
+    line-height: 1.5;
+    margin-bottom: 0.75rem !important;
   }
   
   .hero-support {
     display: none;
+  }
+  
+  .hero-eyebrow {
+    margin-bottom: 0.5rem !important;
+    font-size: 0.6rem;
   }
   
   .hero-content .btn-lg {
@@ -1983,6 +2152,8 @@ html, body {
 .product-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: 1.5rem;
 }
 
 .product-card:hover {
@@ -1997,6 +2168,9 @@ html, body {
 
 .product-card .card-img-top {
   transition: transform 0.3s ease;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
 }
 
 .product-card:hover .card-img-top {

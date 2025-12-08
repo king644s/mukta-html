@@ -44,7 +44,16 @@ const initScrollAnimations = () => {
     animatedBlocks.forEach((block) => {
       block.style.opacity = "1";
       block.style.transform = "none";
+      block.style.visibility = "visible";
       block.classList.add("fade-in");
+      
+      // Also ensure all nested elements are visible
+      const nestedElements = block.querySelectorAll("*");
+      nestedElements.forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+        el.style.visibility = "visible";
+      });
     });
     return;
   }
@@ -183,6 +192,68 @@ const initHeroSlider = () => {
   setHeroCopyFromSlide(swiper.slides[swiper.activeIndex]);
 };
 
+const setDifferentiatorLayoutHeight = () => {
+  const layout = document.querySelector(".differentiator-layout");
+  const scrollArea = document.querySelector(".diff-scroll-area");
+  const section = document.querySelector("#differentiators");
+  const container = section?.querySelector(".container");
+  const row = layout?.closest(".row");
+  
+  if (!layout || !scrollArea) return;
+  
+  // Ensure all parent elements have overflow visible for sticky to work
+  if (section) section.style.overflow = 'visible';
+  if (container) container.style.overflow = 'visible';
+  if (row) row.style.overflow = 'visible';
+  layout.style.overflow = 'visible';
+  
+  // Set the parent layout height to match the scrollable content height
+  // This ensures sticky positioning works throughout the entire scroll
+  const updateHeight = () => {
+    if (window.innerWidth >= 992) { // Only on desktop (lg breakpoint)
+      // Get the actual scroll height including all content
+      const scrollHeight = scrollArea.scrollHeight;
+      const wrapperHeight = scrollArea.querySelector('.diff-wrapper')?.scrollHeight || 0;
+      const spacerHeight = scrollArea.querySelector('.diff-spacer')?.scrollHeight || 0;
+      
+      // Use the maximum height to ensure sticky works throughout
+      const totalHeight = Math.max(scrollHeight, wrapperHeight + spacerHeight);
+      
+      if (totalHeight > 0) {
+        layout.style.minHeight = `${totalHeight}px`;
+      }
+    } else {
+      layout.style.minHeight = '';
+    }
+  };
+  
+  // Use requestAnimationFrame to ensure DOM is ready
+  requestAnimationFrame(() => {
+    updateHeight();
+    
+    // Also update after a short delay to account for GSAP animations
+    setTimeout(updateHeight, 100);
+    setTimeout(updateHeight, 500);
+  });
+  
+  // Update on resize with debounce
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateHeight, 250);
+  });
+  
+  // Update after images and all content load
+  window.addEventListener('load', () => {
+    setTimeout(updateHeight, 100);
+  });
+  
+  // Update when GSAP ScrollTrigger refreshes
+  if (typeof gsap !== 'undefined' && gsap.ScrollTrigger) {
+    gsap.ScrollTrigger.addEventListener('refresh', updateHeight);
+  }
+};
+
 const initDifferentiatorCardsAnimation = () => {
   if (!ensureScrollTrigger()) return;
 
@@ -232,313 +303,7 @@ const setFooterYear = () => {
   yearTag.textContent = currentYear;
 };
 
-// Validation functions
-const validators = {
-  name: (value) => {
-    if (!value || value.trim().length === 0) {
-      return "Full name is required";
-    }
-    if (value.trim().length < 2) {
-      return "Name must be at least 2 characters long";
-    }
-    if (value.trim().length > 100) {
-      return "Name must be less than 100 characters";
-    }
-    if (!/^[a-zA-Z\s'-]+$/.test(value.trim())) {
-      return "Name can only contain letters, spaces, hyphens, and apostrophes";
-    }
-    return null;
-  },
-  
-  email: (value) => {
-    if (!value || value.trim().length === 0) {
-      return "Email address is required";
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(value.trim())) {
-      return "Please enter a valid email address";
-    }
-    if (value.trim().length > 255) {
-      return "Email address is too long";
-    }
-    return null;
-  },
-  
-  phone: (value) => {
-    if (!value || value.trim().length === 0) {
-      return "Phone number is required";
-    }
-    // Remove spaces, dashes, parentheses, and plus signs for validation
-    const cleaned = value.replace(/[\s\-\(\)\+]/g, "");
-    if (!/^\d{10,15}$/.test(cleaned)) {
-      return "Please enter a valid phone number (10-15 digits)";
-    }
-    return null;
-  },
-  
-  company: (value) => {
-    // Company is optional, but if provided, validate it
-    if (value && value.trim().length > 0) {
-      if (value.trim().length < 2) {
-        return "Company name must be at least 2 characters long";
-      }
-      if (value.trim().length > 100) {
-        return "Company name must be less than 100 characters";
-      }
-    }
-    return null;
-  },
-  
-  customerType: (value) => {
-    if (!value || value === "") {
-      return "Please select a customer type";
-    }
-    if (value !== "b2b" && value !== "individual") {
-      return "Please select a valid customer type";
-    }
-    return null;
-  },
-  
-  message: (value) => {
-    if (!value || value.trim().length === 0) {
-      return "Message is required";
-    }
-    if (value.trim().length < 10) {
-      return "Message must be at least 10 characters long";
-    }
-    if (value.trim().length > 1000) {
-      return "Message must be less than 1000 characters";
-    }
-    return null;
-  }
-};
-
-const showFieldError = (input, errorMessage) => {
-  // Remove existing error message
-  const existingError = input.parentElement.querySelector(".invalid-feedback");
-  if (existingError) {
-    existingError.remove();
-  }
-  
-  // Add error class
-  input.classList.add("is-invalid");
-  input.classList.remove("is-valid");
-  
-  // Create and insert error message
-  const errorDiv = document.createElement("div");
-  errorDiv.className = "invalid-feedback";
-  errorDiv.textContent = errorMessage;
-  input.parentElement.appendChild(errorDiv);
-};
-
-const showFieldSuccess = (input) => {
-  // Remove existing error message
-  const existingError = input.parentElement.querySelector(".invalid-feedback");
-  if (existingError) {
-    existingError.remove();
-  }
-  
-  // Add success class
-  input.classList.remove("is-invalid");
-  input.classList.add("is-valid");
-};
-
-const validateField = (input, validator) => {
-  const value = input.value;
-  const error = validator(value);
-  
-  if (error) {
-    showFieldError(input, error);
-    return false;
-  } else {
-    showFieldSuccess(input);
-    return true;
-  }
-};
-
-const validateForm = (form) => {
-  let isValid = true;
-  
-  // Validate name
-  const nameInput = form.querySelector('input[name="name"]');
-  if (nameInput && !validateField(nameInput, validators.name)) {
-    isValid = false;
-  }
-  
-  // Validate email
-  const emailInput = form.querySelector('input[name="email"]');
-  if (emailInput && !validateField(emailInput, validators.email)) {
-    isValid = false;
-  }
-  
-  // Validate phone
-  const phoneInput = form.querySelector('input[name="phone"]');
-  if (phoneInput && !validateField(phoneInput, validators.phone)) {
-    isValid = false;
-  }
-  
-  // Validate company (optional)
-  const companyInput = form.querySelector('input[name="company"]');
-  if (companyInput && companyInput.value.trim().length > 0) {
-    if (!validateField(companyInput, validators.company)) {
-      isValid = false;
-    }
-  }
-  
-  // Validate customer type
-  const customerTypeInput = form.querySelector('select[name="customerType"]');
-  if (customerTypeInput && !validateField(customerTypeInput, validators.customerType)) {
-    isValid = false;
-  }
-  
-  // Validate message
-  const messageInput = form.querySelector('textarea[name="message"]');
-  if (messageInput && !validateField(messageInput, validators.message)) {
-    isValid = false;
-  }
-  
-  return isValid;
-};
-
-const handleContactForm = (formId, messageId) => {
-  const form = document.getElementById(formId);
-  const messageDiv = document.getElementById(messageId);
-  
-  if (!form || !messageDiv) return;
-
-  // Add real-time validation on blur
-  const nameInput = form.querySelector('input[name="name"]');
-  const emailInput = form.querySelector('input[name="email"]');
-  const phoneInput = form.querySelector('input[name="phone"]');
-  const companyInput = form.querySelector('input[name="company"]');
-  const customerTypeInput = form.querySelector('select[name="customerType"]');
-  const messageInput = form.querySelector('textarea[name="message"]');
-
-  if (nameInput) {
-    nameInput.addEventListener("blur", () => validateField(nameInput, validators.name));
-    nameInput.addEventListener("input", () => {
-      if (nameInput.classList.contains("is-invalid")) {
-        validateField(nameInput, validators.name);
-      }
-    });
-  }
-
-  if (emailInput) {
-    emailInput.addEventListener("blur", () => validateField(emailInput, validators.email));
-    emailInput.addEventListener("input", () => {
-      if (emailInput.classList.contains("is-invalid")) {
-        validateField(emailInput, validators.email);
-      }
-    });
-  }
-
-  if (phoneInput) {
-    phoneInput.addEventListener("blur", () => validateField(phoneInput, validators.phone));
-    phoneInput.addEventListener("input", () => {
-      if (phoneInput.classList.contains("is-invalid")) {
-        validateField(phoneInput, validators.phone);
-      }
-    });
-  }
-
-  if (companyInput) {
-    companyInput.addEventListener("blur", () => {
-      if (companyInput.value.trim().length > 0) {
-        validateField(companyInput, validators.company);
-      }
-    });
-    companyInput.addEventListener("input", () => {
-      if (companyInput.classList.contains("is-invalid") && companyInput.value.trim().length > 0) {
-        validateField(companyInput, validators.company);
-      }
-    });
-  }
-
-  if (customerTypeInput) {
-    customerTypeInput.addEventListener("change", () => validateField(customerTypeInput, validators.customerType));
-  }
-
-  if (messageInput) {
-    messageInput.addEventListener("blur", () => validateField(messageInput, validators.message));
-    messageInput.addEventListener("input", () => {
-      if (messageInput.classList.contains("is-invalid")) {
-        validateField(messageInput, validators.message);
-      }
-    });
-  }
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    
-    // Clear previous messages
-    messageDiv.style.display = "none";
-    
-    // Validate all fields
-    if (!validateForm(form)) {
-      messageDiv.className = "mt-3 text-center text-danger";
-      messageDiv.innerHTML = '<i class="bi bi-exclamation-circle-fill me-2"></i>Please correct the errors in the form before submitting.';
-      messageDiv.style.display = "block";
-      
-      // Scroll to first error
-      const firstError = form.querySelector(".is-invalid");
-      if (firstError) {
-        firstError.scrollIntoView({ behavior: "smooth", block: "center" });
-        firstError.focus();
-      }
-      return;
-    }
-    
-    const formData = new FormData(form);
-    const data = {
-      name: formData.get("name").trim(),
-      email: formData.get("email").trim(),
-      phone: formData.get("phone").trim(),
-      company: formData.get("company")?.trim() || "N/A",
-      customerType: formData.get("customerType"),
-      message: formData.get("message").trim(),
-    };
-
-    // Create mailto link with form data
-    const subject = encodeURIComponent(`Contact Form Submission - ${data.customerType === "b2b" ? "B2B" : "Individual"} Customer`);
-    const body = encodeURIComponent(
-      `Name: ${data.name}\n` +
-      `Email: ${data.email}\n` +
-      `Phone: ${data.phone}\n` +
-      `Company: ${data.company}\n` +
-      `Customer Type: ${data.customerType === "b2b" ? "B2B Customer (Wholesale/Business)" : "Individual Customer"}\n\n` +
-      `Message:\n${data.message}`
-    );
-    
-    const mailtoLink = `mailto:info@muktaexports.com?subject=${subject}&body=${body}`;
-    
-    // Show success message
-    messageDiv.className = "mt-3 text-center text-success";
-    messageDiv.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>Thank you! Your message has been prepared. Opening your email client...';
-    messageDiv.style.display = "block";
-    
-    // Open mailto link
-    window.location.href = mailtoLink;
-    
-    // Reset form after a delay
-    setTimeout(() => {
-      form.reset();
-      // Remove validation classes
-      form.querySelectorAll(".is-valid, .is-invalid").forEach(el => {
-        el.classList.remove("is-valid", "is-invalid");
-      });
-      form.querySelectorAll(".invalid-feedback").forEach(el => el.remove());
-      messageDiv.style.display = "none";
-    }, 5000);
-  });
-};
-
-const initContactForms = () => {
-  handleContactForm("contactForm", "formMessage");
-  handleContactForm("contactFormHome", "formMessageHome");
-};
-
-const init = () => {
-  // On mobile, immediately make all fade elements visible
+const handleMobileFadeElements = () => {
   if (window.innerWidth <= 767) {
     const fadeElements = document.querySelectorAll("[data-fade]");
     fadeElements.forEach((el) => {
@@ -546,18 +311,40 @@ const init = () => {
       el.style.transform = "none";
       el.style.visibility = "visible";
       el.classList.add("fade-in");
+      
+      // Also ensure all nested elements are visible
+      const nestedElements = el.querySelectorAll("*");
+      nestedElements.forEach((nestedEl) => {
+        nestedEl.style.opacity = "1";
+        nestedEl.style.transform = "none";
+        nestedEl.style.visibility = "visible";
+      });
     });
   }
+};
+
+const init = () => {
+  // On mobile, immediately make all fade elements visible
+  handleMobileFadeElements();
   
   initCounters();
   initScrollAnimations();
   initBrochureDownload();
   initSmoothScroll();
   initHeroSlider();
+  setDifferentiatorLayoutHeight();
   initDifferentiatorCardsAnimation();
   setFooterYear();
-  initContactForms();
 };
+
+// Handle window resize for responsive fade elements
+let resizeTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    handleMobileFadeElements();
+  }, 250);
+});
 
 // Run immediately if DOM is already loaded, otherwise wait
 if (document.readyState === 'loading') {
