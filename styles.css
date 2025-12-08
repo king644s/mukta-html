@@ -688,6 +688,42 @@ html, body {
   transform: translateY(0);
 }
 
+/* Disable fade animation on mobile devices */
+@media (max-width: 767.98px) {
+  [data-fade] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+  
+  /* Ensure product cards and all cards are visible */
+  .product-card,
+  .card,
+  .row[data-fade] > *,
+  section[data-fade] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  /* Ensure Bootstrap columns are visible */
+  .col-md-6,
+  .col-lg-4,
+  .col-md-4 {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
 @media (min-width: 768px) {
   .diff-cards {
     width: 80%;
@@ -1927,4 +1963,61 @@ html, body {
   .brochure-card .brochure-icon {
     margin-bottom: 1rem;
   }
+}
+
+/* Product Detail Pages */
+.product-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.product-image-wrapper img {
+  transition: transform 0.3s ease;
+}
+
+.product-image-wrapper:hover img {
+  transform: scale(1.05);
+}
+
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(34, 23, 17, 0.15);
+}
+
+.product-card a {
+  display: block;
+  height: 100%;
+}
+
+.product-card .card-img-top {
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+.breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumb-item a {
+  color: var(--mukta-primary);
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: var(--mukta-muted);
 }

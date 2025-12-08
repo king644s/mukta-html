@@ -38,6 +38,17 @@ const initScrollAnimations = () => {
   const animatedBlocks = document.querySelectorAll("[data-fade]");
   if (!animatedBlocks.length) return;
 
+  // On mobile devices, make elements visible immediately
+  const isMobile = window.innerWidth <= 767;
+  if (isMobile) {
+    animatedBlocks.forEach((block) => {
+      block.style.opacity = "1";
+      block.style.transform = "none";
+      block.classList.add("fade-in");
+    });
+    return;
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -527,6 +538,17 @@ const initContactForms = () => {
 };
 
 const init = () => {
+  // On mobile, immediately make all fade elements visible
+  if (window.innerWidth <= 767) {
+    const fadeElements = document.querySelectorAll("[data-fade]");
+    fadeElements.forEach((el) => {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+      el.style.visibility = "visible";
+      el.classList.add("fade-in");
+    });
+  }
+  
   initCounters();
   initScrollAnimations();
   initBrochureDownload();
@@ -537,4 +559,9 @@ const init = () => {
   initContactForms();
 };
 
-document.addEventListener("DOMContentLoaded", init);
+// Run immediately if DOM is already loaded, otherwise wait
+if (document.readyState === 'loading') {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
