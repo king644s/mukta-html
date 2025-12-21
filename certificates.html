@@ -37,7 +37,7 @@
               <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
               <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
-            <div class="ms-lg-4 pt-3 pt-lg-0">
+            <div class="ms-lg-4 pt-3 pt-lg-0" style="display:none;">
               <a class="btn btn-primary px-4 py-2 rounded-3" href="brochure.html">E Brochure</a>
             </div>
           </div>
@@ -53,14 +53,103 @@
         </section>
 
         <section class="row g-4 mb-5" data-fade>
-          <div class="col-md-4"><div class="card-glow p-4 h-100"><p class="text-primary text-uppercase small mb-1">Certificate</p><h3 class="h5">FSSAI</h3><p class="text-muted-custom small mb-0">Food Safety and Standards Authority of India certification ensuring food safety compliance.</p></div></div>
-          <div class="col-md-4"><div class="card-glow p-4 h-100"><p class="text-primary text-uppercase small mb-1">Certificate</p><h3 class="h5">GMP (Good Manufacturing Practices)</h3><p class="text-muted-custom small mb-0">End-to-end compliance for hygienic processing and packing.</p></div></div>
-          <div class="col-md-4"><div class="card-glow p-4 h-100"><p class="text-primary text-uppercase small mb-1">Certificate</p><h3 class="h5">FDA</h3><p class="text-muted-custom small mb-0">Food and Drug Administration compliance for international food safety standards.</p></div></div>
-          <div class="col-md-4"><div class="card-glow p-4 h-100"><p class="text-primary text-uppercase small mb-1">Certificate</p><h3 class="h5">SPICE BOARD</h3><p class="text-muted-custom small mb-0">Spices Board of India registration for quality assurance and export authorization.</p></div></div>
-          <div class="col-md-4"><div class="card-glow p-4 h-100"><p class="text-primary text-uppercase small mb-1">Certificate</p><h3 class="h5">DGFT</h3><p class="text-muted-custom small mb-0">Directorate General of Foreign Trade registration for authorized export operations.</p></div></div>
-          <div class="col-md-4"><div class="card-glow p-4 h-100"><p class="text-primary text-uppercase small mb-1">Certificate</p><h3 class="h5">IEC</h3><p class="text-muted-custom small mb-0">Import Export Code registration enabling international trade operations.</p></div></div>
-          <div class="col-md-4"><div class="card-glow p-4 h-100"><p class="text-primary text-uppercase small mb-1">Certificate</p><h3 class="h5">GST</h3><p class="text-muted-custom small mb-0">Goods and Services Tax registration for compliant business operations.</p></div></div>
-          <div class="col-md-4"><div class="card-glow p-4 h-100"><p class="text-primary text-uppercase small mb-1">Certificate</p><h3 class="h5">MSME</h3><p class="text-muted-custom small mb-0">Micro, Small and Medium Enterprises registration for government benefits and recognition.</p></div></div>
+          <!-- FSSAI -->
+          <div class="col-md-4 col-sm-6">
+            <div class="cert-card h-100">
+              <div class="cert-logo-wrapper">
+                <img src="assets/certificates/fssai.webp" alt="FSSAI Logo" class="cert-logo" />
+              </div>
+              <div class="cert-content">
+                <span class="cert-badge">Certified</span>
+                <h3 class="cert-title">FSSAI</h3>
+                <p class="cert-desc">Food Safety and Standards Authority of India certification ensuring food safety compliance.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- GMP -->
+          <div class="col-md-4 col-sm-6">
+            <div class="cert-card h-100">
+              <div class="cert-logo-wrapper">
+                <img src="assets/certificates/gmp.webp" alt="GMP Logo" class="cert-logo" />
+              </div>
+              <div class="cert-content">
+                <span class="cert-badge">Certified</span>
+                <h3 class="cert-title">GMP</h3>
+                <p class="cert-desc">Good Manufacturing Practices compliance for hygienic processing and packing.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- FDA -->
+          <div class="col-md-4 col-sm-6">
+            <div class="cert-card h-100">
+              <div class="cert-logo-wrapper">
+                <img src="assets/certificates/fda.webp" alt="FDA Logo" class="cert-logo" />
+              </div>
+              <div class="cert-content">
+                <span class="cert-badge">Certified</span>
+                <h3 class="cert-title">FDA</h3>
+                <p class="cert-desc">Food and Drug Administration compliance for international food safety standards.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- SPICE BOARD -->
+          <div class="col-md-4 col-sm-6">
+            <div class="cert-card h-100">
+              <div class="cert-logo-wrapper">
+                <img src="assets/certificates/spice.webp" alt="Spice Board Logo" class="cert-logo" />
+              </div>
+              <div class="cert-content">
+                <span class="cert-badge">Registered</span>
+                <h3 class="cert-title">Spice Board</h3>
+                <p class="cert-desc">Spices Board of India registration for quality assurance and export authorization.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- DGFT -->
+          <div class="col-md-4 col-sm-6">
+            <div class="cert-card h-100">
+              <div class="cert-logo-wrapper">
+                <img src="assets/certificates/dgft.webp" alt="DGFT Logo" class="cert-logo" />
+              </div>
+              <div class="cert-content">
+                <span class="cert-badge">Registered</span>
+                <h3 class="cert-title">DGFT</h3>
+                <p class="cert-desc">Directorate General of Foreign Trade registration for authorized export operations.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- GST -->
+          <div class="col-md-4 col-sm-6">
+            <div class="cert-card h-100">
+              <div class="cert-logo-wrapper">
+                <img src="assets/certificates/gst.webp" alt="GST Logo" class="cert-logo" />
+              </div>
+              <div class="cert-content">
+                <span class="cert-badge">Registered</span>
+                <h3 class="cert-title">GST</h3>
+                <p class="cert-desc">Goods and Services Tax registration for compliant business operations.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- MSME -->
+          <div class="col-md-4 col-sm-6">
+            <div class="cert-card h-100">
+              <div class="cert-logo-wrapper">
+                <img src="assets/certificates/msme.webp" alt="MSME Logo" class="cert-logo" />
+              </div>
+              <div class="cert-content">
+                <span class="cert-badge">Registered</span>
+                <h3 class="cert-title">MSME</h3>
+                <p class="cert-desc">Micro, Small and Medium Enterprises registration for government benefits and recognition.</p>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section class="card-glow p-4 p-lg-5" data-fade>
@@ -90,7 +179,7 @@
               <li><a href="products.html">Products</a></li>
               <li><a href="certificates.html">Certificates</a></li>
               <li><a href="blog.html">Blog</a></li>
-              <li><a href="brochure.html">E Brochure</a></li>
+              <li style="display:none;"><a href="brochure.html">E Brochure</a></li>
             </ul>
           </div>
           
