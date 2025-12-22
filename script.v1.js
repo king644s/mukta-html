@@ -323,7 +323,38 @@ const handleMobileFadeElements = () => {
   }
 };
 
+// Make first row of product cards visible immediately on all screen sizes
+const ensureFirstRowVisible = () => {
+  const productGrids = document.querySelectorAll("[data-fade].row");
+  
+  productGrids.forEach((grid) => {
+    // Get all column children (product cards)
+    const columns = grid.querySelectorAll(":scope > [class*='col-']");
+    
+    // Make first 3 cards visible (first row on desktop, adjusts on smaller screens)
+    const firstRowCount = 3;
+    columns.forEach((col, index) => {
+      if (index < firstRowCount) {
+        col.style.opacity = "1";
+        col.style.transform = "none";
+        col.style.visibility = "visible";
+        
+        // Also make the card inside visible
+        const card = col.querySelector(".card");
+        if (card) {
+          card.style.opacity = "1";
+          card.style.transform = "none";
+          card.style.visibility = "visible";
+        }
+      }
+    });
+  });
+};
+
 const init = () => {
+  // Make first row of product cards visible immediately (before any animations)
+  ensureFirstRowVisible();
+  
   // On mobile, immediately make all fade elements visible
   handleMobileFadeElements();
   
