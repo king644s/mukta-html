@@ -1,0 +1,481 @@
+# ============================================
+# MUKTA EXPORTS - COMPREHENSIVE SECURITY .HTACCESS
+# ============================================
+# This file contains comprehensive security configurations
+# for cPanel hosting environment
+# ============================================
+
+# ============================================
+# 1. ENABLE REWRITE ENGINE
+# ============================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+</IfModule>
+
+# ============================================
+# 2. FORCE HTTPS / SSL REDIRECTION
+# ============================================
+<IfModule mod_rewrite.c>
+    # Force HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Force www or non-www (uncomment one)
+    # RewriteCond %{HTTP_HOST} !^www\. [NC]
+    # RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Or force non-www (uncomment if preferred)
+    # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    # RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ============================================
+# 3. SECURITY HEADERS
+# ============================================
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # XSS Protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Referrer Policy
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Content Security Policy (CSP) - Adjust based on your needs
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com https://www.googletagmanager.com https://ik.imagekit.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://ik.imagekit.io; connect-src 'self' https://www.googletagmanager.com; frame-ancestors 'self';"
+    
+    # Permissions Policy (formerly Feature Policy)
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    
+    # Strict Transport Security (HSTS) - 1 year
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # Remove server signature
+    Header always unset X-Powered-By
+    Header unset X-Powered-By
+    
+    # Remove ETag
+    Header unset ETag
+</IfModule>
+
+# ============================================
+# 4. DISABLE DIRECTORY BROWSING
+# ============================================
+Options -Indexes
+Options -MultiViews
+
+# ============================================
+# 5. PROTECT SENSITIVE FILES AND DIRECTORIES
+# ============================================
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to sensitive files
+<FilesMatch "(^#.*#|\.(bak|conf|dist|fla|in[ci]|log|orig|psd|sh|sql|sw[op])|~)$">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
+
+# Protect .htaccess and .htpasswd
+<FilesMatch "^\.ht">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
+
+# Protect configuration files
+<FilesMatch "(wp-config|config\.php|\.env|\.git|composer\.(json|lock)|package\.json|yarn\.lock|\.DS_Store)">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
+
+# Block access to README and documentation files
+<FilesMatch "(README|CHANGELOG|LICENSE|SECURITY|\.md)$">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
+
+# ============================================
+# 6. BLOCK MALICIOUS USER AGENTS
+# ============================================
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^(-|\.|') [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^(.*)(<|>|%3C|%3E)(.*) [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} ^(java|curl|wget|python|nikto|nmap|sqlmap|libwww-perl|curl|scan|winhttp|clshttp|loader|fetch|extract|stripper|sucker|reaper|harvest|assassin) [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} (;|<|>|'|"|\)|\(|%0A|%0D|%27|%3C|%3E|%00) [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} (bot|crawl|slurp|spider|mediapartners) [NC]
+    RewriteRule .* - [F,L]
+</IfModule>
+
+# ============================================
+# 7. BLOCK SUSPICIOUS QUERY STRINGS
+# ============================================
+<IfModule mod_rewrite.c>
+    # Block SQL injection attempts
+    RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*object.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*embed.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} (NULL|OUTFILE|LOAD_FILE) [OR]
+    RewriteCond %{QUERY_STRING} (\./|\../|\.\./)+(etc|bin|var|tmp|usr|dev|proc|sys|boot|lib|opt|srv|mnt|media|root|home|run|sbin) [NC,OR]
+    RewriteCond %{QUERY_STRING} (localhost|loopback|127\.0\.0\.1) [NC,OR]
+    RewriteCond %{QUERY_STRING} (SELECT|UNION|INSERT|DELETE|UPDATE|REPLACE|CREATE|DROP|ALTER|EXEC|EXECUTE|CAST|TRUNCATE) [NC]
+    RewriteRule .* - [F,L]
+</IfModule>
+
+# ============================================
+# 8. BLOCK SUSPICIOUS REQUEST METHODS
+# ============================================
+<LimitExcept GET POST HEAD>
+    Order allow,deny
+    Deny from all
+</LimitExcept>
+
+# ============================================
+# 9. BLOCK SUSPICIOUS REQUEST URI
+# ============================================
+<IfModule mod_rewrite.c>
+    # Block requests with suspicious patterns in URI
+    RewriteCond %{REQUEST_URI} (\.\./|\.\.\\|\.\.%2F|\.\.%5C) [NC,OR]
+    RewriteCond %{REQUEST_URI} (boot\.ini|etc/passwd|self/environ) [NC,OR]
+    RewriteCond %{REQUEST_URI} (thumbs?\.db|Thumbs\.db) [NC,OR]
+    RewriteCond %{REQUEST_URI} (\.php|\.asp|\.exe|\.pl|\.cgi|\.scgi) [NC]
+    RewriteCond %{REQUEST_URI} !^/index\.html$ [NC]
+    RewriteCond %{REQUEST_URI} !^/404\.html$ [NC]
+    RewriteCond %{REQUEST_URI} !^/about\.html$ [NC]
+    RewriteCond %{REQUEST_URI} !^/blog\.html$ [NC]
+    RewriteCond %{REQUEST_URI} !^/blog/ [NC]
+    RewriteCond %{REQUEST_URI} !^/contact\.html$ [NC]
+    RewriteCond %{REQUEST_URI} !^/products\.html$ [NC]
+    RewriteCond %{REQUEST_URI} !^/products/ [NC]
+    RewriteCond %{REQUEST_URI} !^/certificates\.html$ [NC]
+    RewriteCond %{REQUEST_URI} !^/brochure\.html$ [NC]
+    RewriteCond %{REQUEST_URI} !^/assets/ [NC]
+    RewriteCond %{REQUEST_URI} !^/robots\.txt$ [NC]
+    RewriteCond %{REQUEST_URI} !^/sitemap\.xml$ [NC]
+    RewriteCond %{REQUEST_URI} !^/styles\.v1\.css$ [NC]
+    RewriteCond %{REQUEST_URI} !^/script\.v1\.js$ [NC]
+    RewriteRule .* - [F,L]
+</IfModule>
+
+# ============================================
+# 10. PREVENT HOTLINKING (IMAGE PROTECTION)
+# ============================================
+<IfModule mod_rewrite.c>
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?muktaexports\.com [NC]
+    RewriteCond %{HTTP_REFERER} !^https?://(www\.)?muktaexports\.com/.*$ [NC]
+    RewriteCond %{REQUEST_URI} \.(jpg|jpeg|png|gif|webp|svg|ico)$ [NC]
+    # Uncomment the line below to block hotlinking (or redirect to a placeholder)
+    # RewriteRule \.(jpg|jpeg|png|gif|webp|svg|ico)$ - [F,L]
+    # Or redirect to a placeholder image:
+    # RewriteRule \.(jpg|jpeg|png|gif|webp|svg|ico)$ https://www.muktaexports.com/assets/hotlink-placeholder.jpg [R,L]
+</IfModule>
+
+# ============================================
+# 11. LIMIT REQUEST SIZE (PREVENT DOS)
+# ============================================
+<IfModule mod_security.c>
+    # Limit request body size (10MB)
+    SecRequestBodyLimit 10485760
+    SecRequestBodyNoFilesLimit 1048576
+</IfModule>
+
+# Limit request size via PHP (if using PHP)
+<IfModule mod_php.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value max_input_time 300
+</IfModule>
+
+# ============================================
+# 12. CUSTOM ERROR PAGES
+# ============================================
+ErrorDocument 400 /404.html
+ErrorDocument 401 /404.html
+ErrorDocument 403 /404.html
+ErrorDocument 404 /404.html
+ErrorDocument 500 /404.html
+ErrorDocument 502 /404.html
+ErrorDocument 503 /404.html
+
+# ============================================
+# 13. MIME TYPE SECURITY
+# ============================================
+<IfModule mod_mime.c>
+    # Prevent execution of scripts in upload directories
+    <FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|jsp|asp|sh|cgi)$">
+        <If "%{REQUEST_URI} =~ m#/assets/#">
+            Order allow,deny
+            Deny from all
+        </If>
+    </FilesMatch>
+    
+    # Proper MIME types
+    AddType application/javascript js
+    AddType text/css css
+    AddType image/svg+xml svg svgz
+    AddType image/webp webp
+    AddType image/avif avif
+    AddEncoding gzip svgz
+</IfModule>
+
+# ============================================
+# 14. FILE UPLOAD SECURITY
+# ============================================
+<IfModule mod_php.c>
+    # Disable dangerous PHP functions
+    php_flag allow_url_fopen Off
+    php_flag allow_url_include Off
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value error_log /home/username/logs/php_errors.log
+</IfModule>
+
+# ============================================
+# 15. COMPRESSION (GZIP)
+# ============================================
+<IfModule mod_deflate.c>
+    # Compress HTML, CSS, JavaScript, Text, XML and fonts
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE application/x-font
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/x-font-otf
+    AddOutputFilterByType DEFLATE application/x-font-truetype
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE image/x-icon
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/xml
+    
+    # Remove browser bugs (only needed for really old browsers)
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    Header append Vary User-Agent
+</IfModule>
+
+# ============================================
+# 16. BROWSER CACHING
+# ============================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    
+    # Video
+    ExpiresByType video/mp4 "access plus 1 year"
+    ExpiresByType video/mpeg "access plus 1 year"
+    
+    # CSS, JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    
+    # HTML
+    ExpiresByType text/html "access plus 0 seconds"
+    
+    # Data
+    ExpiresByType text/xml "access plus 0 seconds"
+    ExpiresByType application/xml "access plus 0 seconds"
+    ExpiresByType application/json "access plus 0 seconds"
+    
+    # Default
+    ExpiresDefault "access plus 1 month"
+</IfModule>
+
+# Cache-Control Headers
+<IfModule mod_headers.c>
+    # Images
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|avif)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+    
+    # CSS and JavaScript
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "max-age=2592000, public"
+    </FilesMatch>
+    
+    # HTML
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "max-age=0, must-revalidate"
+    </FilesMatch>
+    
+    # Fonts
+    <FilesMatch "\.(ttf|otf|woff|woff2|eot)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+</IfModule>
+
+# ============================================
+# 17. BLOCK ACCESS TO BACKUP FILES
+# ============================================
+<FilesMatch "(^#.*#|\.(bak|backup|old|orig|save|swp|tmp|~))$">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
+
+# ============================================
+# 18. PROTECT AGAINST BRUTE FORCE (RATE LIMITING)
+# ============================================
+# Note: This requires mod_evasive or mod_security
+# Uncomment if available on your server
+# <IfModule mod_evasive20.c>
+#     DOSHashTableSize    3097
+#     DOSPageCount        3
+#     DOSSiteCount        50
+#     DOSPageInterval     1
+#     DOSSiteInterval     1
+#     DOSBlockingPeriod   600
+# </IfModule>
+
+# ============================================
+# 19. DISABLE SERVER SIGNATURE
+# ============================================
+ServerSignature Off
+
+# ============================================
+# 20. PROTECT AGAINST TRACE AND TRACK METHODS
+# ============================================
+<IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK|OPTIONS|DELETE)
+    RewriteRule .* - [F,L]
+</IfModule>
+
+# ============================================
+# 21. BLOCK IP ADDRESSES (IF NEEDED)
+# ============================================
+# Uncomment and add IP addresses to block
+# <Limit GET POST>
+#     Order allow,deny
+#     Deny from 123.456.789.0
+#     Deny from 192.168.1.100
+#     Allow from all
+# </Limit>
+
+# ============================================
+# 22. ALLOW ONLY SPECIFIC IPs (IF NEEDED)
+# ============================================
+# Uncomment to allow only specific IPs (for admin areas)
+# <Limit GET POST>
+#     Order deny,allow
+#     Deny from all
+#     Allow from 123.456.789.0
+#     Allow from 192.168.1.100
+# </Limit>
+
+# ============================================
+# 23. PREVENT DIRECTORY TRAVERSAL
+# ============================================
+<IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_URI} (^|/)(\.\./)+ [OR]
+    RewriteCond %{REQUEST_URI} ^(.*/)(\.\./)+ [NC]
+    RewriteRule .* - [F,L]
+</IfModule>
+
+# ============================================
+# 24. SECURE COOKIES (IF USING PHP SESSIONS)
+# ============================================
+<IfModule mod_php.c>
+    php_flag session.cookie_httponly On
+    php_flag session.cookie_secure On
+    php_value session.use_only_cookies 1
+</IfModule>
+
+# ============================================
+# 25. BLOCK COMMON EXPLOIT ATTEMPTS
+# ============================================
+<IfModule mod_rewrite.c>
+    # Block common exploit patterns
+    RewriteCond %{QUERY_STRING} (eval\(|base64_decode|gzip|exec|shell_exec|passthru|system|phpinfo) [NC,OR]
+    RewriteCond %{QUERY_STRING} (mosConfig|_vti_|_cpanel|localhost|127\.0\.0\.1) [NC,OR]
+    RewriteCond %{QUERY_STRING} (boot\.ini|etc/passwd|self/environ) [NC,OR]
+    RewriteCond %{QUERY_STRING} (thumbs?\.db|Thumbs\.db) [NC]
+    RewriteRule .* - [F,L]
+</IfModule>
+
+# ============================================
+# 26. PROTECT AGAINST XML-RPC ATTACKS
+# ============================================
+<FilesMatch "^(xmlrpc\.php|wp-trackback\.php)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ============================================
+# 27. DISABLE ETAGS
+# ============================================
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+FileETag None
+
+# ============================================
+# 28. CHARACTER ENCODING
+# ============================================
+AddDefaultCharset UTF-8
+<IfModule mod_mime.c>
+    AddCharset UTF-8 .html .css .js .xml .json .rss .atom
+</IfModule>
+
+# ============================================
+# END OF SECURITY CONFIGURATION
+# ============================================
+# 
+# IMPORTANT NOTES:
+# 1. Test this file thoroughly after deployment
+# 2. Some rules may need adjustment based on your specific needs
+# 3. Keep a backup of your original .htaccess before deploying
+# 4. Monitor your error logs after deployment
+# 5. Adjust CSP headers based on your external resources
+# 6. Update the domain name in hotlinking rules if different
+# 7. Some features require specific Apache modules (mod_rewrite, mod_headers, etc.)
+# 8. Contact your hosting provider if certain features don't work
+# 
+# ============================================
+
