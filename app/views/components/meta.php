@@ -32,7 +32,7 @@ $ogImage = $pageData['og_image'] ?? IMAGEKIT_CDN . '/export-hero.webp';
 <link rel="apple-touch-icon" href="<?php echo IMAGEKIT_CDN; ?>/mukta-icon.svg" />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content="<?php echo isset($pageData['og_type']) ? htmlspecialchars($pageData['og_type']) : 'website'; ?>" />
 <meta property="og:url" content="<?php echo htmlspecialchars($canonical); ?>" />
 <meta property="og:title" content="<?php echo htmlspecialchars($title); ?>" />
 <meta property="og:description" content="<?php echo htmlspecialchars($description); ?>" />
@@ -42,6 +42,11 @@ $ogImage = $pageData['og_image'] ?? IMAGEKIT_CDN . '/export-hero.webp';
 <meta property="og:image:alt" content="<?php echo SITE_NAME; ?>" />
 <meta property="og:site_name" content="<?php echo SITE_NAME; ?>" />
 <meta property="og:locale" content="en_US" />
+<?php if (isset($pageData['og_type']) && $pageData['og_type'] === 'article' && isset($pageData['published_date'])): ?>
+<meta property="article:published_time" content="<?php echo htmlspecialchars($pageData['published_date']); ?>T00:00:00+05:30" />
+<meta property="article:author" content="<?php echo SITE_NAME; ?>" />
+<meta property="article:section" content="Spice Industry" />
+<?php endif; ?>
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />

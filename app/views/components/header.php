@@ -61,4 +61,12 @@ $config = $config ?? [];
       </nav>
     </header>
 
-    <main<?php echo $activeNav !== 'home' ? ' class="py-5"' : ''; ?>>
+    <main<?php 
+      $mainClass = '';
+      if ($activeNav !== 'home' && !isset($pageData['is_blog_detail'])) {
+        $mainClass = ' class="py-5"';
+      } elseif (isset($pageData['is_blog_detail'])) {
+        $mainClass = ' class="blog-detail-wrapper"';
+      }
+      echo $mainClass;
+    ?>>

@@ -54,9 +54,18 @@ $routes = [
     'blog' => 'blog',
 ];
 
-// Handle nested paths (e.g., products/spices)
+// Handle nested paths (e.g., products/spices, blog/slug)
 $pathParts = explode('/', $path);
 $mainPath = $pathParts[0];
+
+// Handle blog detail pages (e.g., blog/why-world-loves-indian-spices)
+if ($mainPath === 'blog' && isset($pathParts[1])) {
+    $blogSlug = $pathParts[1];
+    if (method_exists($controller, 'blogDetail')) {
+        $controller->blogDetail($blogSlug);
+        exit;
+    }
+}
 
 // Handle product category pages
 if ($mainPath === 'products' && isset($pathParts[1])) {

@@ -100,6 +100,55 @@ class PageController extends Controller {
         ]);
     }
     
+    public function blogDetail($slug) {
+        // Map blog slugs to their data
+        $blogPosts = [
+            'why-world-loves-indian-spices' => [
+                'title' => 'Why the World Loves Indian Spices: Heritage, Quality & Flavor | Mukta Exports',
+                'description' => 'Discover why India is the "Land of Spices". Learn about the rich heritage, high curcumin turmeric, Malabar black pepper, and vibrant flavors that make Indian spices globally celebrated.',
+                'keywords' => 'Indian spices, why Indian spices are best, turmeric benefits, curcumin content, Malabar pepper, spice sourcing India, premium spices, spice heritage',
+                'published_date' => '2025-12-20',
+                'article_title' => 'Unlocking the Essence of India: Why the World Loves Our Spices',
+                'article_subtitle' => 'Discover the rich heritage, unmatched quality, and vibrant flavors that Mukta Exports brings to the global table.',
+            ]
+        ];
+        
+        if (!isset($blogPosts[$slug])) {
+            $this->notFound();
+            return;
+        }
+        
+        $post = $blogPosts[$slug];
+        
+        $shareUrl = BASE_URL . '/blog/' . $slug;
+        $shareTitle = urlencode($post['article_title']);
+        $shareDescription = urlencode($post['description']);
+        
+        $pageData = [
+            'title' => $post['title'],
+            'description' => $post['description'],
+            'keywords' => $post['keywords'],
+            'og_image' => IMAGEKIT_CDN . '/products/whole-spices.webp',
+            'og_type' => 'article',
+            'active_nav' => 'blog',
+            'is_blog_detail' => true,
+            'published_date' => $post['published_date'],
+            'article_title' => $post['article_title'],
+            'article_subtitle' => $post['article_subtitle'],
+            'share_url' => $shareUrl,
+            'share_title' => $shareTitle,
+            'share_description' => $shareDescription,
+            'structured_data' => $this->getLocalBusinessSchema() . $this->getBlogArticleStructuredData($post, $slug),
+        ];
+        $config = $this->pageModel->getConfig();
+        
+        $this->view('blog/detail', [
+            'pageData' => $pageData,
+            'config' => $config,
+            'post' => $post
+        ]);
+    }
+    
     public function notFound() {
         http_response_code(404);
         $pageData = [
@@ -377,6 +426,41 @@ class PageController extends Controller {
         }
         </script>
         ' . $this->getBreadcrumbStructuredData(['Home', 'Blog']);
+    }
+    
+    private function getBlogArticleStructuredData($post, $slug) {
+        $url = BASE_URL . '/blog/' . $slug;
+        return '
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "' . htmlspecialchars($post['article_title'], ENT_QUOTES, 'UTF-8') . '",
+          "description": "' . htmlspecialchars($post['description'], ENT_QUOTES, 'UTF-8') . '",
+          "image": "' . IMAGEKIT_CDN . '/products/whole-spices.webp",
+          "author": {
+            "@type": "Organization",
+            "name": "Mukta Exports",
+            "url": "' . BASE_URL . '"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Mukta Exports",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "' . IMAGEKIT_CDN . '/muktalogo.svg"
+            }
+          },
+          "datePublished": "' . $post['published_date'] . '",
+          "dateModified": "' . $post['published_date'] . '",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "' . $url . '"
+          },
+          "keywords": ["Indian spices", "turmeric", "curcumin", "Malabar pepper", "spice export"]
+        }
+        </script>
+        ' . $this->getBreadcrumbStructuredData(['Home', 'Blog', $post['article_title']]);
     }
     
     private function getBreadcrumbStructuredData($items) {
