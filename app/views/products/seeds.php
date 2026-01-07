@@ -38,7 +38,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/seeds/cumin-seeds" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/cumin-seeds.webp" class="card-img-top" alt="Cumin seeds" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/closeup-cumin-seed.webp" class="card-img-top" alt="Cumin seeds" />
                 <div class="card-body">
                   <h3 class="h5">Cumin Seeds</h3>
                   <p class="text-muted-custom small">Strong aromatic flavor, uniform size, max oil content.</p>

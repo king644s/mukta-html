@@ -32,7 +32,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/spices/turmeric" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/turmeric.webp" class="card-img-top" alt="Turmeric" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/turmeric-1.webp" class="card-img-top" alt="Turmeric" />
                 <div class="card-body">
                   <h3 class="h5">Turmeric</h3>
                   <p class="text-muted-custom small">High curcumin fingers, sun-dried for color and potency.</p>
@@ -50,7 +50,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/spices/cardamom" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/cardamom.webp" class="card-img-top" alt="Cardamom" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/cardamom-1.webp" class="card-img-top" alt="Cardamom" />
                 <div class="card-body">
                   <h3 class="h5">Cardamom</h3>
                   <p class="text-muted-custom small">Extra bold pods with intense aroma and uniform grading.</p>

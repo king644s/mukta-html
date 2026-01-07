@@ -24,11 +24,12 @@ class ProductController extends Controller {
             exit;
         }
         
+        $productImage = (strpos($product['image'], 'http') === 0) ? $product['image'] : IMAGEKIT_CDN . '/products/' . $product['image'];
         $pageData = [
             'title' => $product['title'],
             'description' => $product['description'],
             'keywords' => $product['keywords'],
-            'og_image' => IMAGEKIT_CDN . '/products/' . $product['image'],
+            'og_image' => $productImage,
             'active_nav' => $category,
             'structured_data' => $this->getProductStructuredData($product, $category, $slug),
         ];
@@ -48,6 +49,7 @@ class ProductController extends Controller {
             ['@type' => 'ListItem', 'position' => 4, 'name' => $product['name'], 'item' => BASE_URL . '/products/' . $category . '/' . $slug],
         ];
         
+        $productImage = (strpos($product['image'], 'http') === 0) ? $product['image'] : IMAGEKIT_CDN . '/products/' . $product['image'];
         return $this->getLocalBusinessSchema() . '
         <script type="application/ld+json">
         {
@@ -55,7 +57,7 @@ class ProductController extends Controller {
           "@type": "Product",
           "name": "' . addslashes($product['name']) . '",
           "description": "' . addslashes($product['description']) . '",
-          "image": "' . IMAGEKIT_CDN . '/products/' . $product['image'] . '",
+          "image": "' . $productImage . '",
           "brand": {
             "@type": "Brand",
             "name": "Mukta Exports"
