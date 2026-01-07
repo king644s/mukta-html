@@ -48,7 +48,7 @@ class ProductController extends Controller {
             ['@type' => 'ListItem', 'position' => 4, 'name' => $product['name'], 'item' => BASE_URL . '/products/' . $category . '/' . $slug],
         ];
         
-        return '
+        return $this->getLocalBusinessSchema() . '
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -78,6 +78,85 @@ class ProductController extends Controller {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": ' . json_encode($breadcrumbs) . '
+        }
+        </script>';
+    }
+    
+    private function getLocalBusinessSchema() {
+        return '
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "@id": "' . BASE_URL . '/#business",
+          "name": "Mukta Exports",
+          "alternateName": "Mukta Exports India",
+          "image": [
+            "' . IMAGEKIT_CDN . '/export-hero.webp",
+            "' . IMAGEKIT_CDN . '/muktalogo.svg"
+          ],
+          "logo": "' . IMAGEKIT_CDN . '/muktalogo.svg",
+          "description": "Premium Indian spices, seeds, and powders exporter based in Mumbai, India. FSSAI, GMP, and FDA certified spice exporter serving global markets.",
+          "priceRange": "$$",
+          "telephone": "' . SITE_PHONE . '",
+          "email": "' . SITE_EMAIL . '",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "C/16, Beliram Industrial Estate, 1st Floor, S.V. Road",
+            "addressLocality": "Dahisar East",
+            "addressRegion": "Maharashtra",
+            "postalCode": "400068",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 19.2542,
+            "longitude": 72.8568
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            }
+          ],
+          "url": "' . BASE_URL . '",
+          "sameAs": [],
+          "servesCuisine": "Indian Spices",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Indian Spices, Seeds & Powders",
+            "itemListElement": [
+              {
+                "@type": "OfferCatalog",
+                "name": "Whole Spices",
+                "url": "' . BASE_URL . '/products/spices"
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Oil Seeds",
+                "url": "' . BASE_URL . '/products/seeds"
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Spice Powders",
+                "url": "' . BASE_URL . '/products/powders"
+              }
+            ]
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Global"
+          },
+          "knowsAbout": [
+            "Indian Spices Export",
+            "Spice Sourcing",
+            "Bulk Spice Supply",
+            "FSSAI Certified Spices",
+            "GMP Certified Exporter",
+            "FDA Approved Spices"
+          ]
         }
         </script>';
     }
@@ -128,7 +207,7 @@ class ProductController extends Controller {
     }
     
     private function getSpicesStructuredData() {
-        return '
+        return $this->getLocalBusinessSchema() . '
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -155,7 +234,7 @@ class ProductController extends Controller {
     }
     
     private function getSeedsStructuredData() {
-        return '
+        return $this->getLocalBusinessSchema() . '
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -185,7 +264,7 @@ class ProductController extends Controller {
     }
     
     private function getPowdersStructuredData() {
-        return '
+        return $this->getLocalBusinessSchema() . '
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",

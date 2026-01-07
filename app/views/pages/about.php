@@ -53,7 +53,10 @@ $imagekit = IMAGEKIT_CDN;
               <p class="founder-title">Founder & Partner</p>
               <div class="founder-divider"></div>
               <p class="founder-quote">
-                Yash Ghaghda is the driving force behind Mukta Exports. As Founder and Partner, he combines a sharp business acumen with an uncompromising stance on quality control. Yash is dedicated to simplifying the spice export process for international buyers, focusing on timely delivery, premium sourcing, and transparent communication. His goal is to make Mukta Exports the most trusted link in the global spice supply chain.
+                Yash Ghaghda is the driving force behind Mukta Exports. As Founder and Partner, he brings a unique perspective to the spice industry, backed by over a decade of experience in the jewelry sector. Having successfully built and managed a jewelry manufacturing business from the ground up, Yash carries forward a legacy of precision, attention to detail, and high-end craftsmanship.
+              </p>
+              <p class="founder-quote">
+                He combines this sharp business acumen with an uncompromising stance on quality control. Yash is dedicated to simplifying the spice export process for international buyers, focusing on timely delivery, premium sourcing, and transparent communication. By merging the meticulous standards of the jewelry world with the complexities of global trade, his goal is to make Mukta Exports the most trusted link in the global spice supply chain.
               </p>
               <div class="founder-signature">
                 <i class="fa-solid fa-quote-left"></i>

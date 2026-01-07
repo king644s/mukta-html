@@ -73,7 +73,7 @@ class PageController extends Controller {
             'keywords' => 'FSSAI certified spices, GMP certified exporter, FDA approved spices India, Spice Board registered, DGFT registered exporter, quality certified spices, food safety standards',
             'og_image' => IMAGEKIT_CDN . '/export-hero.webp',
             'active_nav' => 'certificates',
-            'structured_data' => $this->getBreadcrumbStructuredData(['Home', 'Certificates']),
+            'structured_data' => $this->getLocalBusinessSchema() . $this->getBreadcrumbStructuredData(['Home', 'Certificates']),
         ];
         $config = $this->pageModel->getConfig();
         
@@ -90,7 +90,7 @@ class PageController extends Controller {
             'keywords' => 'spice industry blog, Indian spices news, spice export trends, private label spices, spice packaging, spice sourcing, turmeric benefits, cumin uses',
             'og_image' => IMAGEKIT_CDN . '/products/whole-spices.webp',
             'active_nav' => 'blog',
-            'structured_data' => $this->getBlogStructuredData(),
+            'structured_data' => $this->getLocalBusinessSchema() . $this->getBlogStructuredData(),
         ];
         $config = $this->pageModel->getConfig();
         
@@ -117,7 +117,7 @@ class PageController extends Controller {
     
     // Structured Data Helpers
     private function getHomeStructuredData() {
-        return '
+        return $this->getLocalBusinessSchema() . '
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -158,10 +158,33 @@ class PageController extends Controller {
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Mukta Exports",
+          "url": "' . BASE_URL . '",
+          "description": "Premium Indian spices, seeds, and powders exporter",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Mukta Exports"
+          }
+        }
+        </script>';
+    }
+    
+    private function getLocalBusinessSchema() {
+        return '
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
           "@type": "LocalBusiness",
           "@id": "' . BASE_URL . '/#business",
           "name": "Mukta Exports",
-          "image": "' . IMAGEKIT_CDN . '/export-hero.webp",
+          "alternateName": "Mukta Exports India",
+          "image": [
+            "' . IMAGEKIT_CDN . '/export-hero.webp",
+            "' . IMAGEKIT_CDN . '/muktalogo.svg"
+          ],
+          "logo": "' . IMAGEKIT_CDN . '/muktalogo.svg",
+          "description": "Premium Indian spices, seeds, and powders exporter based in Mumbai, India. FSSAI, GMP, and FDA certified spice exporter serving global markets.",
           "priceRange": "$$",
           "telephone": "' . SITE_PHONE . '",
           "email": "' . SITE_EMAIL . '",
@@ -178,32 +201,56 @@ class PageController extends Controller {
             "latitude": 19.2542,
             "longitude": 72.8568
           },
-          "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "09:00",
-            "closes": "18:00"
-          },
-          "url": "' . BASE_URL . '"
-        }
-        </script>
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "Mukta Exports",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "09:00",
+              "closes": "18:00"
+            }
+          ],
           "url": "' . BASE_URL . '",
-          "description": "Premium Indian spices, seeds, and powders exporter",
-          "publisher": {
-            "@type": "Organization",
-            "name": "Mukta Exports"
-          }
+          "sameAs": [],
+          "servesCuisine": "Indian Spices",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Indian Spices, Seeds & Powders",
+            "itemListElement": [
+              {
+                "@type": "OfferCatalog",
+                "name": "Whole Spices",
+                "url": "' . BASE_URL . '/products/spices"
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Oil Seeds",
+                "url": "' . BASE_URL . '/products/seeds"
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Spice Powders",
+                "url": "' . BASE_URL . '/products/powders"
+              }
+            ]
+          },
+          "areaServed": {
+            "@type": "Country",
+            "name": "Global"
+          },
+          "knowsAbout": [
+            "Indian Spices Export",
+            "Spice Sourcing",
+            "Bulk Spice Supply",
+            "FSSAI Certified Spices",
+            "GMP Certified Exporter",
+            "FDA Approved Spices"
+          ]
         }
         </script>';
     }
     
     private function getAboutStructuredData() {
-        return '
+        return $this->getLocalBusinessSchema() . '
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -237,7 +284,7 @@ class PageController extends Controller {
     }
     
     private function getProductsStructuredData() {
-        return '
+        return $this->getLocalBusinessSchema() . '
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -277,7 +324,7 @@ class PageController extends Controller {
     }
     
     private function getContactStructuredData() {
-        return '
+        return $this->getLocalBusinessSchema() . '
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
