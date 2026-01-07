@@ -71,7 +71,6 @@ class PageController extends Controller {
             'title' => 'Certifications & Quality Standards | Mukta Exports - FSSAI, GMP, FDA Certified',
             'description' => 'Mukta Exports holds FSSAI, GMP, FDA, Spice Board, DGFT, GST, and MSME certifications. Our export documentation meets international food safety and quality standards for global trade.',
             'keywords' => 'FSSAI certified spices, GMP certified exporter, FDA approved spices India, Spice Board registered, DGFT registered exporter, quality certified spices, food safety standards',
-            'canonical' => BASE_URL . '/certificates',
             'og_image' => IMAGEKIT_CDN . '/export-hero.webp',
             'active_nav' => 'certificates',
             'structured_data' => $this->getBreadcrumbStructuredData(['Home', 'Certificates']),
@@ -89,7 +88,6 @@ class PageController extends Controller {
             'title' => 'Spice Industry Insights & News | Mukta Exports Blog',
             'description' => 'Expert insights on Indian spice export industry, sourcing trends, packaging innovations, and private-label solutions. Stay updated with Mukta Exports\' spice trade knowledge.',
             'keywords' => 'spice industry blog, Indian spices news, spice export trends, private label spices, spice packaging, spice sourcing, turmeric benefits, cumin uses',
-            'canonical' => BASE_URL . '/blog',
             'og_image' => IMAGEKIT_CDN . '/products/whole-spices.webp',
             'active_nav' => 'blog',
             'structured_data' => $this->getBlogStructuredData(),
@@ -107,7 +105,6 @@ class PageController extends Controller {
         $pageData = [
             'title' => '404 - Page Not Found | Mukta Exports',
             'description' => 'The page you are looking for could not be found.',
-            'canonical' => BASE_URL . '/404',
             'active_nav' => 'home',
         ];
         $config = $this->pageModel->getConfig();

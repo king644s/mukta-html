@@ -7,7 +7,12 @@ $config = $config ?? [];
 $title = $pageData['title'] ?? 'Mukta Exports';
 $description = $pageData['description'] ?? '';
 $keywords = $pageData['keywords'] ?? '';
-$canonical = $pageData['canonical'] ?? BASE_URL;
+
+// Use dynamic canonical URL generation - always matches current page URL
+// This ensures every page has a canonical tag pointing to itself, fixing Google Search Console issues
+// Only override if explicitly set (for special cases like redirects)
+$canonical = isset($pageData['canonical']) ? $pageData['canonical'] : getCanonicalUrl();
+
 $ogImage = $pageData['og_image'] ?? IMAGEKIT_CDN . '/export-hero.webp';
 ?>
 <meta charset="utf-8" />
