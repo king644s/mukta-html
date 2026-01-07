@@ -1,6 +1,10 @@
 RewriteEngine On
 RewriteBase /
 
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.muktaexports\.com$ [NC]
+RewriteRule ^(.*)$ https://muktaexports.com/$1 [L,R=301]
+
 # Block direct access to html-backup folder
 RewriteRule ^html-backup/ - [F,L]
 
