@@ -50,6 +50,23 @@ $config = $config ?? [];
           </div>
         </div>
         
+        <?php if (isset($pageData['active_nav']) && $pageData['active_nav'] === 'contact'): ?>
+        <!-- Footer CTA for Contact Page -->
+        <div class="footer-cta">
+          <div class="footer-cta-content">
+            <div class="footer-cta-text">
+              <h3 class="footer-cta-title">Ready to Start Your Spice Export Journey?</h3>
+              <p class="footer-cta-description">Get in touch with us today for premium quality Indian spices, seeds, and powders. We're here to help with your export needs.</p>
+            </div>
+            <div class="footer-cta-action">
+              <a href="/contact" class="footer-cta-btn">
+                Contact Us <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <?php endif; ?>
+        
         <div class="footer-copyright">
           <p class="mb-0">© <span id="year"><?php echo date('Y'); ?></span> <?php echo SITE_NAME; ?>. All rights reserved.</p>
         </div>
