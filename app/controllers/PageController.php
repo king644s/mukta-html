@@ -183,6 +183,12 @@ class PageController extends Controller {
             $mail->Port = SMTP_PORT;
             $mail->CharSet = 'UTF-8';
             
+            // Enable SMTP debugging (for logging)
+            $mail->SMTPDebug = 0; // Set to 0 for production, 2 for detailed debugging
+            $mail->Debugoutput = function($str, $level) {
+                // This will be captured in our detailed logging
+            };
+            
             // Check if password is set
             if (empty(SMTP_PASSWORD)) {
                 throw new Exception('SMTP password is not configured. Please set SMTP_PASSWORD in config.php');
@@ -253,6 +259,12 @@ class PageController extends Controller {
                 $thankYouMail->Port = SMTP_PORT;
                 $thankYouMail->CharSet = 'UTF-8';
                 
+                // Enable SMTP debugging (for logging)
+                $thankYouMail->SMTPDebug = 0; // Set to 0 for production, 2 for detailed debugging
+                $thankYouMail->Debugoutput = function($str, $level) {
+                    // This will be captured in our detailed logging
+                };
+                
                 // Recipients
                 $fromEmail = !empty(SMTP_FROM_EMAIL) ? SMTP_FROM_EMAIL : SITE_EMAIL;
                 $fromName = !empty(SMTP_FROM_NAME) ? SMTP_FROM_NAME : SITE_NAME;
@@ -292,6 +304,24 @@ class PageController extends Controller {
                 $thankYouEmailError = (isset($thankYouMail) && !empty($thankYouMail->ErrorInfo)) 
                     ? $thankYouMail->ErrorInfo 
                     : $thankYouException->getMessage();
+                
+                // Log detailed SMTP error
+                $this->logSMTPError([
+                    'email_type' => 'thank_you_email',
+                    'exception' => $thankYouException,
+                    'phpmailer' => isset($thankYouMail) ? $thankYouMail : null,
+                    'recipient_email' => $email,
+                    'recipient_name' => $name,
+                    'subject' => 'Thank You for Contacting ' . SITE_NAME,
+                    'contact_form_data' => [
+                        'name' => $name,
+                        'email' => $email,
+                        'phone' => $phone,
+                        'company' => $company,
+                        'customer_type' => $customerType
+                    ]
+                ]);
+                
                 error_log('Thank you email error: ' . $thankYouEmailError);
             }
             
@@ -330,6 +360,24 @@ class PageController extends Controller {
             // Error sending email
             $errorMessage = isset($mail) ? $mail->ErrorInfo : $e->getMessage();
             error_log('Contact form error: ' . $errorMessage);
+            
+            // Log detailed SMTP error
+            $this->logSMTPError([
+                'email_type' => 'admin_notification_email',
+                'exception' => $e,
+                'phpmailer' => isset($mail) ? $mail : null,
+                'recipient_email' => SITE_EMAIL,
+                'recipient_name' => SITE_NAME,
+                'subject' => 'New Contact Form Submission - ' . SITE_NAME,
+                'contact_form_data' => [
+                    'name' => $name,
+                    'email' => $email,
+                    'phone' => $phone,
+                    'company' => $company,
+                    'customer_type' => $customerType,
+                    'message' => substr($message, 0, 500)
+                ]
+            ]);
             
             // Log error submission
             $this->logContactFormSubmission([
@@ -496,6 +544,224 @@ class PageController extends Controller {
         }
         
         $output .= str_repeat('=', 80) . PHP_EOL;
+        $output .= PHP_EOL;
+        
+        return $output;
+    }
+    
+    /**
+     * Log detailed SMTP errors to dedicated log file
+     * This function captures all SMTP-related errors with complete details
+     */
+    private function logSMTPError($data) {
+        // Ensure logs directory exists
+        if (!file_exists(LOGS_PATH)) {
+            @mkdir(LOGS_PATH, 0755, true);
+        }
+        
+        // Create log file name with date (one file per day)
+        $logFile = LOGS_PATH . '/smtp_errors_' . date('Y-m-d') . '.log';
+        
+        // Extract exception details
+        $exception = $data['exception'] ?? null;
+        $phpmailer = $data['phpmailer'] ?? null;
+        
+        // Get exception information
+        $exceptionMessage = $exception ? $exception->getMessage() : 'Unknown error';
+        $exceptionCode = $exception ? $exception->getCode() : 0;
+        $exceptionFile = $exception ? $exception->getFile() : 'Unknown';
+        $exceptionLine = $exception ? $exception->getLine() : 0;
+        $exceptionTrace = $exception ? $exception->getTraceAsString() : 'No trace available';
+        
+        // Get PHPMailer error information
+        $phpmailerErrorInfo = null;
+        $smtpHost = null;
+        $smtpPort = null;
+        $smtpUsername = null;
+        $smtpSecure = null;
+        $smtpAuth = null;
+        $fromEmail = null;
+        $fromName = null;
+        $toEmails = [];
+        $subject = null;
+        $bodyLength = null;
+        
+        if ($phpmailer instanceof PHPMailer) {
+            $phpmailerErrorInfo = $phpmailer->ErrorInfo ?? null;
+            $smtpHost = $phpmailer->Host ?? null;
+            $smtpPort = $phpmailer->Port ?? null;
+            $smtpUsername = $phpmailer->Username ?? null;
+            $smtpSecure = $phpmailer->SMTPSecure ?? null;
+            $smtpAuth = $phpmailer->SMTPAuth ?? null;
+            $fromEmail = $phpmailer->From ?? null;
+            $fromName = $phpmailer->FromName ?? null;
+            
+            // Get all recipients using public methods
+            try {
+                $allToAddresses = $phpmailer->getToAddresses();
+                foreach ($allToAddresses as $to) {
+                    $toEmails[] = [
+                        'email' => $to[0] ?? null,
+                        'name' => $to[1] ?? null
+                    ];
+                }
+            } catch (Exception $e) {
+                // If we can't get recipients, leave empty
+            }
+            
+            $subject = $phpmailer->Subject ?? null;
+            try {
+                $bodyLength = $phpmailer->Body ? strlen($phpmailer->Body) : null;
+            } catch (Exception $e) {
+                $bodyLength = null;
+            }
+        }
+        
+        // Prepare comprehensive log entry
+        $logEntry = [
+            'timestamp' => date('Y-m-d H:i:s'),
+            'email_type' => $data['email_type'] ?? 'unknown',
+            'error' => [
+                'message' => $exceptionMessage,
+                'code' => $exceptionCode,
+                'file' => $exceptionFile,
+                'line' => $exceptionLine,
+                'phpmailer_error_info' => $phpmailerErrorInfo,
+                'trace' => $exceptionTrace
+            ],
+            'smtp_configuration' => [
+                'host' => $smtpHost ?? SMTP_HOST,
+                'port' => $smtpPort ?? SMTP_PORT,
+                'username' => $smtpUsername ?? SMTP_USERNAME,
+                'password_set' => !empty(SMTP_PASSWORD),
+                'encryption' => $smtpSecure ?? 'STARTTLS',
+                'auth_enabled' => $smtpAuth ?? true
+            ],
+            'email_details' => [
+                'from_email' => $fromEmail ?? (!empty(SMTP_FROM_EMAIL) ? SMTP_FROM_EMAIL : SITE_EMAIL),
+                'from_name' => $fromName ?? (!empty(SMTP_FROM_NAME) ? SMTP_FROM_NAME : SITE_NAME),
+                'to_emails' => !empty($toEmails) ? $toEmails : [
+                    [
+                        'email' => $data['recipient_email'] ?? 'Unknown',
+                        'name' => $data['recipient_name'] ?? 'Unknown'
+                    ]
+                ],
+                'subject' => $subject ?? $data['subject'] ?? 'Unknown',
+                'body_length' => $bodyLength ?? 'Unknown',
+                'is_html' => $phpmailer ? ($phpmailer->isHTML() ?? false) : false
+            ],
+            'contact_form_data' => $data['contact_form_data'] ?? null,
+            'server_info' => [
+                'php_version' => PHP_VERSION,
+                'server_software' => $_SERVER['SERVER_SOFTWARE'] ?? 'Unknown',
+                'request_method' => $_SERVER['REQUEST_METHOD'] ?? 'Unknown',
+                'request_uri' => $_SERVER['REQUEST_URI'] ?? 'Unknown',
+                'ip_address' => $this->getClientIp(),
+                'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown'
+            ]
+        ];
+        
+        // Format log entry as JSON (one line per entry for easy parsing)
+        $logLine = json_encode($logEntry, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) . PHP_EOL;
+        
+        // Write to log file (append mode)
+        @file_put_contents($logFile, $logLine, FILE_APPEND | LOCK_EX);
+        
+        // Also create a human-readable log entry
+        $readableLogFile = LOGS_PATH . '/smtp_errors_readable_' . date('Y-m-d') . '.log';
+        $readableEntry = $this->formatReadableSMTPErrorLog($logEntry);
+        @file_put_contents($readableLogFile, $readableEntry, FILE_APPEND | LOCK_EX);
+    }
+    
+    /**
+     * Format SMTP error log entry in human-readable format
+     */
+    private function formatReadableSMTPErrorLog($entry) {
+        $output = str_repeat('=', 100) . PHP_EOL;
+        $output .= "SMTP ERROR LOG ENTRY" . PHP_EOL;
+        $output .= str_repeat('=', 100) . PHP_EOL;
+        $output .= "TIMESTAMP: " . $entry['timestamp'] . PHP_EOL;
+        $output .= "EMAIL TYPE: " . strtoupper($entry['email_type']) . PHP_EOL;
+        $output .= str_repeat('-', 100) . PHP_EOL;
+        
+        // Error Details
+        $output .= "ERROR DETAILS:" . PHP_EOL;
+        $output .= "  Message: " . $entry['error']['message'] . PHP_EOL;
+        $output .= "  Code: " . $entry['error']['code'] . PHP_EOL;
+        $output .= "  File: " . $entry['error']['file'] . PHP_EOL;
+        $output .= "  Line: " . $entry['error']['line'] . PHP_EOL;
+        if (!empty($entry['error']['phpmailer_error_info'])) {
+            $output .= "  PHPMailer Error Info: " . $entry['error']['phpmailer_error_info'] . PHP_EOL;
+        }
+        $output .= PHP_EOL;
+        
+        // SMTP Configuration
+        $output .= "SMTP CONFIGURATION:" . PHP_EOL;
+        $output .= "  Host: " . $entry['smtp_configuration']['host'] . PHP_EOL;
+        $output .= "  Port: " . $entry['smtp_configuration']['port'] . PHP_EOL;
+        $output .= "  Username: " . $entry['smtp_configuration']['username'] . PHP_EOL;
+        $output .= "  Password Set: " . ($entry['smtp_configuration']['password_set'] ? 'Yes' : 'No') . PHP_EOL;
+        $output .= "  Encryption: " . $entry['smtp_configuration']['encryption'] . PHP_EOL;
+        $output .= "  Auth Enabled: " . ($entry['smtp_configuration']['auth_enabled'] ? 'Yes' : 'No') . PHP_EOL;
+        $output .= PHP_EOL;
+        
+        // Email Details
+        $output .= "EMAIL DETAILS:" . PHP_EOL;
+        $output .= "  From Email: " . $entry['email_details']['from_email'] . PHP_EOL;
+        $output .= "  From Name: " . $entry['email_details']['from_name'] . PHP_EOL;
+        $output .= "  To Emails:" . PHP_EOL;
+        foreach ($entry['email_details']['to_emails'] as $to) {
+            $output .= "    - " . $to['email'] . ($to['name'] ? ' (' . $to['name'] . ')' : '') . PHP_EOL;
+        }
+        $output .= "  Subject: " . $entry['email_details']['subject'] . PHP_EOL;
+        $output .= "  Body Length: " . $entry['email_details']['body_length'] . " bytes" . PHP_EOL;
+        $output .= "  Is HTML: " . ($entry['email_details']['is_html'] ? 'Yes' : 'No') . PHP_EOL;
+        $output .= PHP_EOL;
+        
+        // Contact Form Data (if available)
+        if (!empty($entry['contact_form_data'])) {
+            $output .= "CONTACT FORM DATA:" . PHP_EOL;
+            $cfData = $entry['contact_form_data'];
+            if (isset($cfData['name'])) {
+                $output .= "  Name: " . $cfData['name'] . PHP_EOL;
+            }
+            if (isset($cfData['email'])) {
+                $output .= "  Email: " . $cfData['email'] . PHP_EOL;
+            }
+            if (isset($cfData['phone'])) {
+                $output .= "  Phone: " . $cfData['phone'] . PHP_EOL;
+            }
+            if (isset($cfData['company'])) {
+                $output .= "  Company: " . $cfData['company'] . PHP_EOL;
+            }
+            if (isset($cfData['customer_type'])) {
+                $output .= "  Customer Type: " . $cfData['customer_type'] . PHP_EOL;
+            }
+            $output .= PHP_EOL;
+        }
+        
+        // Server Info
+        $output .= "SERVER INFORMATION:" . PHP_EOL;
+        $output .= "  PHP Version: " . $entry['server_info']['php_version'] . PHP_EOL;
+        $output .= "  Server Software: " . $entry['server_info']['server_software'] . PHP_EOL;
+        $output .= "  Request Method: " . $entry['server_info']['request_method'] . PHP_EOL;
+        $output .= "  Request URI: " . $entry['server_info']['request_uri'] . PHP_EOL;
+        $output .= "  IP Address: " . $entry['server_info']['ip_address'] . PHP_EOL;
+        $output .= "  User Agent: " . $entry['server_info']['user_agent'] . PHP_EOL;
+        $output .= PHP_EOL;
+        
+        // Stack Trace
+        if (!empty($entry['error']['trace'])) {
+            $output .= "STACK TRACE:" . PHP_EOL;
+            $output .= str_repeat('-', 100) . PHP_EOL;
+            $traceLines = explode("\n", $entry['error']['trace']);
+            foreach ($traceLines as $traceLine) {
+                $output .= "  " . $traceLine . PHP_EOL;
+            }
+            $output .= PHP_EOL;
+        }
+        
+        $output .= str_repeat('=', 100) . PHP_EOL;
         $output .= PHP_EOL;
         
         return $output;

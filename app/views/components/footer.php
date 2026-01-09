@@ -50,8 +50,8 @@ $config = $config ?? [];
           </div>
         </div>
         
-        <?php if (isset($pageData['active_nav']) && $pageData['active_nav'] === 'contact'): ?>
-        <!-- Footer CTA for Contact Page -->
+        <?php if (!isset($pageData['active_nav']) || $pageData['active_nav'] !== 'contact'): ?>
+        <!-- Footer CTA - Show on all pages except contact page -->
         <div class="footer-cta">
           <div class="footer-cta-content">
             <div class="footer-cta-text">
