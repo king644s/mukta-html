@@ -1,0 +1,13 @@
+# Deny all direct web access to views directory
+# Views should only be included by the application, not accessed directly
+Order deny,allow
+Deny from all
+
+# Alternative for Apache 2.4+
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+

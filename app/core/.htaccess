@@ -1,0 +1,12 @@
+# Deny all access to core directory
+Order deny,allow
+Deny from all
+
+# Alternative for Apache 2.4+
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+
+# Prevent directory listing
+Options -Indexes
+

@@ -351,6 +351,81 @@ const ensureFirstRowVisible = () => {
   });
 };
 
+const initContactForm = () => {
+  const contactForm = document.getElementById('contactForm');
+  if (!contactForm) return;
+
+  const formMessage = document.getElementById('formMessage');
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  const originalButtonText = submitButton?.textContent || 'Send Message';
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    if (!submitButton) return;
+    
+    // Disable submit button
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    
+    // Hide previous messages
+    if (formMessage) {
+      formMessage.style.display = 'none';
+      formMessage.className = 'mt-3 text-center';
+    }
+    
+    // Get form data
+    const formData = new FormData(contactForm);
+    
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok && result.success) {
+        // Success
+        if (formMessage) {
+          formMessage.className = 'mt-3 text-center text-success';
+          formMessage.textContent = result.message || 'Thank you! Your message has been sent successfully. We will get back to you soon.';
+          formMessage.style.display = 'block';
+        }
+        
+        // Reset form
+        contactForm.reset();
+        
+        // Scroll to message
+        if (formMessage) {
+          formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      } else {
+        // Error
+        if (formMessage) {
+          formMessage.className = 'mt-3 text-center text-danger';
+          formMessage.textContent = result.message || 'Sorry, there was an error sending your message. Please try again or contact us directly.';
+          formMessage.style.display = 'block';
+        }
+      }
+    } catch (error) {
+      // Network or other error
+      if (formMessage) {
+        formMessage.className = 'mt-3 text-center text-danger';
+        formMessage.textContent = 'Sorry, there was an error sending your message. Please try again or contact us directly.';
+        formMessage.style.display = 'block';
+      }
+    } finally {
+      // Re-enable submit button
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
+  });
+};
+
 const init = () => {
   // Make first row of product cards visible immediately (before any animations)
   ensureFirstRowVisible();
@@ -366,6 +441,7 @@ const init = () => {
   setDifferentiatorLayoutHeight();
   initDifferentiatorCardsAnimation();
   setFooterYear();
+  initContactForm();
 };
 
 // Handle window resize for responsive fade elements

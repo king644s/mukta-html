@@ -35,10 +35,10 @@ $config = $config ?? [];
           </div>
         </section>
 
-        <section class="card-glow p-4 p-lg-5 mb-5" data-fade style="display: none;">
+        <section class="card-glow p-4 p-lg-5 mb-5" data-fade>
           <h2 class="h4 fw-semibold mb-4 text-center">Get In Touch</h2>
           <p class="text-muted-custom text-center mb-4">Fill out the form below and we'll get back to you as soon as possible.</p>
-          <form id="contactForm" class="contact-form">
+          <form id="contactForm" class="contact-form" method="POST" action="<?php echo BASE_URL; ?>/contact">
             <div class="row g-3">
               <div class="col-md-6">
                 <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
