@@ -189,7 +189,9 @@ class PageController extends Controller {
             }
             
             // Recipients
-            $mail->setFrom(SMTP_FROM_EMAIL, SMTP_FROM_NAME);
+            $fromEmail = !empty(SMTP_FROM_EMAIL) ? SMTP_FROM_EMAIL : SITE_EMAIL;
+            $fromName = !empty(SMTP_FROM_NAME) ? SMTP_FROM_NAME : SITE_NAME;
+            $mail->setFrom($fromEmail, $fromName);
             $mail->addAddress(SITE_EMAIL, SITE_NAME);
             $mail->addReplyTo($email, $name);
             
@@ -252,7 +254,9 @@ class PageController extends Controller {
                 $thankYouMail->CharSet = 'UTF-8';
                 
                 // Recipients
-                $thankYouMail->setFrom(SMTP_FROM_EMAIL, SMTP_FROM_NAME);
+                $fromEmail = !empty(SMTP_FROM_EMAIL) ? SMTP_FROM_EMAIL : SITE_EMAIL;
+                $fromName = !empty(SMTP_FROM_NAME) ? SMTP_FROM_NAME : SITE_NAME;
+                $thankYouMail->setFrom($fromEmail, $fromName);
                 $thankYouMail->addAddress($email, $name);
                 
                 // Content
