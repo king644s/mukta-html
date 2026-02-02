@@ -15,7 +15,7 @@ $config = $config ?? [];
     <?php if ($activeNav === 'about'): ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <?php endif; ?>
-    <link rel="stylesheet" href="/styles.v2.css" />
+    <link rel="stylesheet" href="/styles.v3.css" />
   </head>
   <body data-bs-spy="scroll" data-bs-target="#mainNav">
     <header class="sticky-top shadow-sm">
