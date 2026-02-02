@@ -152,7 +152,7 @@ $imagekit = IMAGEKIT_CDN;
                     </div>
                     <div class="col-md-4">
                       <figure class="blog-figure blog-figure-sm">
-                        <img src="<?php echo $imagekit; ?>/products/ginger-powder.webp" alt="Ginger Powder" class="blog-image" />
+                        <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Dry%20ginger%20power.webp?updatedAt=1769595950920" alt="Ginger Powder" class="blog-image" />
                         <figcaption><strong>Ginger</strong> for immunity</figcaption>
                       </figure>
                     </div>
@@ -216,7 +216,7 @@ $imagekit = IMAGEKIT_CDN;
               <div class="col-md-4">
                 <article class="card-glow p-4 h-100">
                   <p class="text-uppercase small text-primary mb-2">December 5, 2025</p>
-                  <h4 class="h5">Private-label spice trends for 2025</h4>
+                  <h4 class="h5">Private-label spice trends for 2026</h4>
                   <p class="text-muted-custom small mb-3">How global retailers are leveraging Indian spice partners for bold flavours, competitive pricing, and premium presentation.</p>
                   <a class="text-primary fw-semibold" href="/contact">Discuss this topic →</a>
                 </article>

@@ -25,7 +25,7 @@ $config = $config ?? [];
               <li><a href="/products">Products</a></li>
               <li><a href="/certificates">Certificates</a></li>
               <li><a href="/blog">Blog</a></li>
-              <li style="display:none;"><a href="/brochure">E Brochure</a></li>
+              <li><a href="https://ik.imagekit.io/nce7bwsse/website-assets/mukta-brochure.pdf" target="_blank" rel="noopener noreferrer">E Brochure</a></li>
             </ul>
           </div>
           

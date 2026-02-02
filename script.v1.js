@@ -76,8 +76,10 @@ const initBrochureDownload = () => {
   triggers.forEach((button) =>
     button.addEventListener("click", () => {
       const link = document.createElement("a");
-      link.href = "assets/brochure.pdf";
+      link.href = "https://ik.imagekit.io/nce7bwsse/website-assets/mukta-brochure.pdf";
       link.download = "Mukta-Exports-Brochure.pdf";
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

@@ -53,8 +53,8 @@ $config = $config ?? [];
                 <a class="nav-link <?php echo $activeNav === 'contact' ? 'active' : ''; ?>" href="/contact" <?php echo $activeNav === 'contact' ? 'aria-current="page"' : ''; ?>>Contact</a>
               </li>
             </ul>
-            <div class="ms-lg-4 pt-3 pt-lg-0" style="display:none;">
-              <a class="btn btn-primary px-4 py-2 rounded-3" href="/brochure">E Brochure</a>
+            <div class="ms-lg-4 pt-3 pt-lg-0">
+              <a class="btn btn-primary px-4 py-2 rounded-3" href="https://ik.imagekit.io/nce7bwsse/website-assets/mukta-brochure.pdf" target="_blank" rel="noopener noreferrer">Download Brochure</a>
             </div>
           </div>
         </div>

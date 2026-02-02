@@ -19,7 +19,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/powders/turmeric-powder" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/turmeric-powder.webp" class="card-img-top" alt="Turmeric powder" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Turmeric%20powder.webp" class="card-img-top" alt="Turmeric powder" />
                 <div class="card-body">
                   <h3 class="h5">Turmeric Powder</h3>
                   <p class="text-muted-custom small">High curcumin, vibrant color, mesh 60-80.</p>
@@ -37,7 +37,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/powders/coriander-powder" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/coriander-powder.webp" class="card-img-top" alt="Coriander powder" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Coriander%20seeds%20powder.webp" class="card-img-top" alt="Coriander powder" />
                 <div class="card-body">
                   <h3 class="h5">Coriander Powder</h3>
                   <p class="text-muted-custom small">Citrusy, sweet notes with preserved oils.</p>
@@ -55,7 +55,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/powders/garlic-powder" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/garlic-powder.webp" class="card-img-top" alt="Garlic powder" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Dry%20garlic%20powder.webp" class="card-img-top" alt="Garlic powder" />
                 <div class="card-body">
                   <h3 class="h5">Dry Garlic Powder</h3>
                   <p class="text-muted-custom small">Strong pungency, fine consistency.</p>
@@ -73,7 +73,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/powders/mango-powder" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/mango-powder.webp" class="card-img-top" alt="Amchur" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Amchur%20powder.webp" class="card-img-top" alt="Amchur" />
                 <div class="card-body">
                   <h3 class="h5">Dry Mango Powder (Amchur)</h3>
                   <p class="text-muted-custom small">Tangy, sour profile from sun-dried mangoes.</p>
@@ -90,7 +90,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/powders/garam-masala" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/garam-masala.webp" class="card-img-top" alt="Garam masala" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Garam%20masala.webp?updatedAt=1769595951076" class="card-img-top" alt="Garam masala" />
                 <div class="card-body">
                   <h3 class="h5">Garam Masala</h3>
                   <p class="text-muted-custom small">Traditional blend with balanced warmth.</p>
@@ -107,7 +107,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/powders/nutmeg-powder" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/nutmeg-powder.webp" class="card-img-top" alt="Nutmeg powder" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Nutmeg%20powder.webp" class="card-img-top" alt="Nutmeg powder" />
                 <div class="card-body">
                   <h3 class="h5">Nutmeg Powder</h3>
                   <p class="text-muted-custom small">Rich, warm notes with essential oils.</p>
@@ -124,7 +124,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/powders/black-pepper-powder" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/black-pepper-powder.webp" class="card-img-top" alt="Black pepper powder" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Black%20pepper%20powder.webp" class="card-img-top" alt="Black pepper powder" />
                 <div class="card-body">
                   <h3 class="h5">Black Pepper Powder</h3>
                   <p class="text-muted-custom small">Bold pungency, high piperine.</p>
@@ -141,7 +141,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/powders/white-pepper-powder" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/white-pepper-powder.webp" class="card-img-top" alt="White pepper powder" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/White%20pepper%20powder.webp" class="card-img-top" alt="White pepper powder" />
                 <div class="card-body">
                   <h3 class="h5">White Pepper Powder</h3>
                   <p class="text-muted-custom small">Milder profile for light sauces.</p>
@@ -155,7 +155,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/powders/clove-powder" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/clove-powder.webp" class="card-img-top" alt="Clove powder" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Clove%20powder.webp" class="card-img-top" alt="Clove powder" />
                 <div class="card-body">
                   <h3 class="h5">Clove Powder</h3>
                   <p class="text-muted-custom small">Warm spice with high oil content.</p>
@@ -169,7 +169,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/powders/red-chilli-powder" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/red-chilli-powder.webp" class="card-img-top" alt="Red chilli powder" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Red%20Chilli%20powder.webp" class="card-img-top" alt="Red chilli powder" />
                 <div class="card-body">
                   <h3 class="h5">Red Chilli Powder</h3>
                   <p class="text-muted-custom small">Vibrant color with controlled heat levels.</p>
@@ -183,7 +183,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/powders/ginger-powder" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/ginger-powder.webp" class="card-img-top" alt="Dry ginger powder" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Dry%20ginger%20power.webp?updatedAt=1769595950920" class="card-img-top" alt="Dry ginger powder" />
                 <div class="card-body">
                   <h3 class="h5">Dry Ginger Powder</h3>
                   <p class="text-muted-custom small">Warm, spicy flavor with preserved essential oils.</p>

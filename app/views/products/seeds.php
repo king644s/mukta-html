@@ -19,7 +19,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/seeds/ajwain-seeds" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/ajwin-seed.webp" class="card-img-top" alt="Ajwain seeds" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Ajwain%20Seeds.webp" class="card-img-top" alt="Ajwain seeds" />
                 <div class="card-body">
                   <h3 class="h5">Ajwain Seeds (Carom Seeds)</h3>
                   <p class="text-muted-custom small">Strong, pungent flavor with medicinal properties.</p>
@@ -38,7 +38,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/seeds/cumin-seeds" class="text-decoration-none text-dark">
-                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/closeup-cumin-seed.webp" class="card-img-top" alt="Cumin seeds" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Cumin%20seeds.webp" class="card-img-top" alt="Cumin seeds" />
                 <div class="card-body">
                   <h3 class="h5">Cumin Seeds</h3>
                   <p class="text-muted-custom small">Strong aromatic flavor, uniform size, max oil content.</p>
@@ -57,7 +57,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/seeds/coriander-seeds" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/coriander-seeds.webp" class="card-img-top" alt="Coriander seeds" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Coriander.webp" class="card-img-top" alt="Coriander seeds" />
                 <div class="card-body">
                   <h3 class="h5">Coriander Seeds</h3>
                   <p class="text-muted-custom small">Citrusy sweetness with preserved essential oils.</p>
@@ -75,7 +75,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/seeds/fennel-seeds" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/fennel-seeds.webp" class="card-img-top" alt="Fennel seeds" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Fennel%20seeds.webp" class="card-img-top" alt="Fennel seeds" />
                 <div class="card-body">
                   <h3 class="h5">Fennel Seeds</h3>
                   <p class="text-muted-custom small">Sweet, licorice-like flavor with high oil content.</p>
@@ -93,7 +93,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/seeds/fenugreek-seeds" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/fenugreek-seeds.webp" class="card-img-top" alt="Fenugreek seeds" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Fenugreek%20seeds.webp" class="card-img-top" alt="Fenugreek seeds" />
                 <div class="card-body">
                   <h3 class="h5">Fenugreek Seeds</h3>
                   <p class="text-muted-custom small">Protein-rich seeds with nutty flavor.</p>
@@ -111,7 +111,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/seeds/nigella-seeds" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/nigella-seeds.webp" class="card-img-top" alt="Nigella Seeds / Kalonji" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Kalonji.webp" class="card-img-top" alt="Nigella Seeds / Kalonji" />
                 <div class="card-body">
                   <h3 class="h5">Nigella Seeds / Kalonji</h3>
                   <p class="text-muted-custom small">Aromatic, slightly bitter, and peppery seeds with health benefits.</p>
@@ -130,7 +130,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/seeds/mustard-black" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/mustard-black.webp" class="card-img-top" alt="Black mustard" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Black%20mustard%20seeds.webp" class="card-img-top" alt="Black mustard" />
                 <div class="card-body">
                   <h3 class="h5">Mustard Seeds (Black)</h3>
                   <p class="text-muted-custom small">Pungent flavor with high oil content.</p>
@@ -148,7 +148,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/seeds/mustard-brown" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/mustard-brown.webp" class="card-img-top" alt="Brown mustard" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Brown%20mustard%20seeds.webp" class="card-img-top" alt="Brown mustard" />
                 <div class="card-body">
                   <h3 class="h5">Mustard Seeds (Brown)</h3>
                   <p class="text-muted-custom small">Mild, earthy undertones perfect for condiments.</p>
@@ -166,7 +166,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/seeds/mustard-yellow" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/mustard-yellow.webp" class="card-img-top" alt="Yellow mustard" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Yellow%20mustard%20seeds.webp" class="card-img-top" alt="Yellow mustard" />
                 <div class="card-body">
                   <h3 class="h5">Mustard Seeds (Yellow)</h3>
                   <p class="text-muted-custom small">Tangy flavor ideal for pickling.</p>
@@ -184,7 +184,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/seeds/dill-seeds" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/dill-seeds.webp" class="card-img-top" alt="Dill seeds" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Dill%20Seeds.webp" class="card-img-top" alt="Dill seeds" />
                 <div class="card-body">
                   <h3 class="h5">Dill Seeds</h3>
                   <p class="text-muted-custom small">Aromatic seeds with warm, slightly bitter, and caraway-like taste.</p>
@@ -202,7 +202,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/seeds/caraway-seeds" class="text-decoration-none text-dark">
-                <img src="<?php echo $imagekit; ?>/products/caraway-seeds.webp" class="card-img-top" alt="Caraway seeds" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Cumin%20seeds.webp?updatedAt=1769595950959" class="card-img-top" alt="Caraway seeds" />
                 <div class="card-body">
                   <h3 class="h5">Caraway Seeds</h3>
                   <p class="text-muted-custom small">Crescent-shaped seeds with warm, sweet flavor and licorice aroma.</p>

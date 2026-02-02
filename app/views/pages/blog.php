@@ -37,10 +37,10 @@ $imagekit = IMAGEKIT_CDN;
         <section class="row g-4" data-fade>
           <div class="col-md-4">
             <article class="card-glow p-4 h-100">
-              <p class="text-uppercase small text-primary mb-2">December 5, 2025</p>
-              <h2 class="h5">Private-label spice trends for 2025</h2>
-              <p class="text-muted-custom small mb-3">How global retailers are leveraging Indian spice partners for bold flavours, competitive pricing, and premium presentation.</p>
-              <a class="text-primary fw-semibold" href="/contact">Discuss this topic →</a>
+              <p class="text-uppercase small text-primary mb-2">February 2, 2026</p>
+              <h2 class="h5">Mukta Exports: India's Premier Global Partner for Premium Red Chillies</h2>
+              <p class="text-muted-custom small mb-3">Serving as a leading Red Chilli exporter in India, bridging the gap between India's fertile chilli farms and global kitchens with trust, purity, and uncompromising quality.</p>
+              <a class="text-primary fw-semibold" href="/blog/premium-red-chillies-exporter-india">Read Article →</a>
             </article>
           </div>
           <div class="col-md-4">
@@ -48,6 +48,14 @@ $imagekit = IMAGEKIT_CDN;
               <p class="text-uppercase small text-primary mb-2">December 18, 2025</p>
               <h2 class="h5">Dehydrated aromatics powering quick-service menus</h2>
               <p class="text-muted-custom small mb-3">Why dehydrated garlic and onion reduce prep time while maintaining heritage taste.</p>
+              <a class="text-primary fw-semibold" href="/contact">Discuss this topic →</a>
+            </article>
+          </div>
+          <div class="col-md-4">
+            <article class="card-glow p-4 h-100">
+              <p class="text-uppercase small text-primary mb-2">December 5, 2025</p>
+              <h2 class="h5">Private-label spice trends for 2026</h2>
+              <p class="text-muted-custom small mb-3">How global retailers are leveraging Indian spice partners for bold flavours, competitive pricing, and premium presentation.</p>
               <a class="text-primary fw-semibold" href="/contact">Discuss this topic →</a>
             </article>
           </div>

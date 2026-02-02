@@ -1203,6 +1203,14 @@ class PageController extends Controller {
                 'published_date' => '2025-12-20',
                 'article_title' => 'Unlocking the Essence of India: Why the World Loves Our Spices',
                 'article_subtitle' => 'Discover the rich heritage, unmatched quality, and vibrant flavors that Mukta Exports brings to the global table.',
+            ],
+            'premium-red-chillies-exporter-india' => [
+                'title' => 'Mukta Exports: India\'s Premier Global Partner for Premium Red Chillies | Red Chilli Exporter',
+                'description' => 'Mukta Exports is a leading Red Chilli exporter in India, specializing in premium varieties like Sannam S4, Teja (S17), and Byadgi. We ensure strict quality control, international compliance, and farm-to-fork sustainability.',
+                'keywords' => 'red chilli exporter India, red chilli supplier, Sannam S4, Teja chilli, Byadgi chilli, premium red chillies, chilli powder exporter, Indian red chilli',
+                'published_date' => '2026-02-02',
+                'article_title' => 'Mukta Exports: India\'s Premier Global Partner for Premium Red Chillies',
+                'article_subtitle' => 'Serving as a leading Red Chilli exporter in India, bridging the gap between India\'s fertile chilli farms and global kitchens with trust, purity, and uncompromising quality.',
             ]
         ];
         
@@ -1235,7 +1243,13 @@ class PageController extends Controller {
         ];
         $config = $this->pageModel->getConfig();
         
-        $this->view('blog/detail', [
+        // Use specific view file if it exists, otherwise use generic detail view
+        $viewFile = 'blog/' . $slug;
+        if (!file_exists(__DIR__ . '/../views/' . $viewFile . '.php')) {
+            $viewFile = 'blog/detail';
+        }
+        
+        $this->view($viewFile, [
             'pageData' => $pageData,
             'config' => $config,
             'post' => $post
