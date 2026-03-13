@@ -28,8 +28,10 @@ if (preg_match('/\.php$/', $path) && basename($path) !== 'index.php' && strpos($
     exit;
 }
 
-// Serve static files (CSS, JS, images) if they exist
-$staticExtensions = ['css', 'js', 'jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'ico', 'woff', 'woff2', 'ttf', 'eot', 'pdf'];
+// Serve static files (CSS, JS, images, XML, text) if they exist
+// Note: adding 'xml' and 'txt' ensures files like sitemap.xml and robots.txt
+// are served directly instead of being routed through index.php.
+$staticExtensions = ['css', 'js', 'jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'ico', 'woff', 'woff2', 'ttf', 'eot', 'pdf', 'xml', 'txt'];
 $pathInfo = pathinfo($path);
 if (isset($pathInfo['extension']) && in_array(strtolower($pathInfo['extension']), $staticExtensions)) {
     $filePath = __DIR__ . $path;

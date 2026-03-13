@@ -1211,6 +1211,14 @@ class PageController extends Controller {
                 'published_date' => '2026-02-02',
                 'article_title' => 'Mukta Exports: India\'s Premier Global Partner for Premium Red Chillies',
                 'article_subtitle' => 'Serving as a leading Red Chilli exporter in India, bridging the gap between India\'s fertile chilli farms and global kitchens with trust, purity, and uncompromising quality.',
+            ],
+            'iran-israel-conflict-indian-trade' => [
+                'title' => 'Navigating the Storm: How the Iran-Israel Conflict is Reshaping Indian Trade',
+                'description' => 'An in-depth look at how the Iran-Israel conflict and Red Sea disruptions are impacting Indian exporters through longer routes, higher freight, sector-specific pain points, and input cost shocks.',
+                'keywords' => 'Iran Israel conflict, Indian export trade, Red Sea disruption, Strait of Hormuz, Indian exporters, freight cost, IMEEC, Chabahar port, crude oil prices, Middle East trade routes',
+                'published_date' => '2026-03-12',
+                'article_title' => 'Navigating the Storm: How the Iran-Israel Conflict is Reshaping Indian Trade',
+                'article_subtitle' => 'How geopolitical shocks in West Asia are changing route economics, squeezing margins, and forcing Indian exporters to rethink risk and contracts.',
             ]
         ];
         

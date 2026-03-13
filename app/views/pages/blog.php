@@ -10,21 +10,21 @@ $imagekit = IMAGEKIT_CDN;
         <!-- Featured Blog Post -->
         <section class="mb-5" data-fade>
           <article class="blog-featured-card">
-            <a href="/blog/why-world-loves-indian-spices" class="blog-featured-link">
+            <a href="/blog/iran-israel-conflict-indian-trade" class="blog-featured-link">
               <div class="row g-0">
                 <div class="col-lg-6">
                   <div class="blog-featured-image">
-                    <img src="<?php echo $imagekit; ?>/products/whole-spices.webp" alt="Unlocking the Essence of India: Why the World Loves Our Spices" />
+                    <img src="https://ik.imagekit.io/nce7bwsse/website-assets/IMG_4240.webp" alt="Navigating the Storm: How the Iran-Israel Conflict is Reshaping Indian Trade" />
                     <span class="blog-featured-badge">Featured</span>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="blog-featured-content">
-                    <p class="text-uppercase small text-primary mb-2"><i class="bi bi-calendar3 me-1"></i> December 20, 2025</p>
-                    <h2 class="blog-featured-title">Unlocking the Essence of India: Why the World Loves Our Spices</h2>
-                    <p class="text-muted-custom mb-3">Discover the rich heritage, unmatched quality, and vibrant flavors that Mukta Exports brings to the global table. From the fiery heat of Guntur chillies to the golden healing touch of Turmeric.</p>
+                    <p class="text-uppercase small text-primary mb-2"><i class="bi bi-calendar3 me-1"></i> March 12, 2026</p>
+                    <h2 class="blog-featured-title">Navigating the Storm: How the Iran-Israel Conflict is Reshaping Indian Trade</h2>
+                    <p class="text-muted-custom mb-3">How West Asia tensions, Red Sea detours, and rising freight and insurance costs are reshaping risk, contracts, and margins for Indian exporters.</p>
                     <div class="blog-featured-meta">
-                      <span class="blog-read-time"><i class="bi bi-clock me-1"></i> 6 min read</span>
+                      <span class="blog-read-time"><i class="bi bi-clock me-1"></i> 7 min read</span>
                       <span class="text-primary fw-semibold">Read Article <i class="bi bi-arrow-right ms-1"></i></span>
                     </div>
                   </div>
@@ -35,6 +35,14 @@ $imagekit = IMAGEKIT_CDN;
         </section>
 
         <section class="row g-4" data-fade>
+          <div class="col-md-4">
+            <article class="card-glow p-4 h-100">
+              <p class="text-uppercase small text-primary mb-2">March 12, 2026</p>
+              <h2 class="h5">Navigating the Storm: How the Iran-Israel Conflict is Reshaping Indian Trade</h2>
+              <p class="text-muted-custom small mb-3">How Middle East tensions, Red Sea disruptions, and higher freight are rewriting the risk and cost calculus for Indian exporters.</p>
+              <a class="text-primary fw-semibold" href="/blog/iran-israel-conflict-indian-trade">Read Article →</a>
+            </article>
+          </div>
           <div class="col-md-4">
             <article class="card-glow p-4 h-100">
               <p class="text-uppercase small text-primary mb-2">February 2, 2026</p>
@@ -56,14 +64,6 @@ $imagekit = IMAGEKIT_CDN;
               <p class="text-uppercase small text-primary mb-2">December 5, 2025</p>
               <h2 class="h5">Private-label spice trends for 2026</h2>
               <p class="text-muted-custom small mb-3">How global retailers are leveraging Indian spice partners for bold flavours, competitive pricing, and premium presentation.</p>
-              <a class="text-primary fw-semibold" href="/contact">Discuss this topic →</a>
-            </article>
-          </div>
-          <div class="col-md-4">
-            <article class="card-glow p-4 h-100">
-              <p class="text-uppercase small text-primary mb-2">December 1, 2025</p>
-              <h2 class="h5">Packaging innovations for premium spices</h2>
-              <p class="text-muted-custom small mb-3">Stand-up pouches, PET grinders, and tin cans that optimise shelf impact and protect volatile oils.</p>
               <a class="text-primary fw-semibold" href="/contact">Discuss this topic →</a>
             </article>
           </div>
