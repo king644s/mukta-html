@@ -1219,6 +1219,14 @@ class PageController extends Controller {
                 'published_date' => '2026-03-12',
                 'article_title' => 'Navigating the Storm: How the Iran-Israel Conflict is Reshaping Indian Trade',
                 'article_subtitle' => 'How geopolitical shocks in West Asia are changing route economics, squeezing margins, and forcing Indian exporters to rethink risk and contracts.',
+            ],
+            'beyond-flavor-why-spices-heartbeat-daily-meals' => [
+                'title' => 'Beyond Flavor: Why Spices are the Heartbeat of Our Daily Meals | Mukta Exports',
+                'description' => 'Explore how everyday spices go beyond taste to shape our moods, health, food safety, cultural identity, and cleaner-label cooking—powered by premium, pure Indian spices.',
+                'keywords' => 'benefits of spices, turmeric health benefits, cardamom digestion, clove antioxidants, clean label cooking, Indian spice exporter, Mukta Exports spices, food as medicine',
+                'published_date' => '2026-03-16',
+                'article_title' => 'Beyond Flavor: Why Spices are the Heartbeat of Our Daily Meals',
+                'article_subtitle' => 'How everyday spices quietly shape our health, moods, and connection to culture—far beyond just taste.',
             ]
         ];
         

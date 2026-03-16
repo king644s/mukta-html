@@ -10,21 +10,21 @@ $imagekit = IMAGEKIT_CDN;
         <!-- Featured Blog Post -->
         <section class="mb-5" data-fade>
           <article class="blog-featured-card">
-            <a href="/blog/iran-israel-conflict-indian-trade" class="blog-featured-link">
+            <a href="/blog/beyond-flavor-why-spices-heartbeat-daily-meals" class="blog-featured-link">
               <div class="row g-0">
                 <div class="col-lg-6">
                   <div class="blog-featured-image">
-                    <img src="https://ik.imagekit.io/nce7bwsse/website-assets/IMG_4240.webp" alt="Navigating the Storm: How the Iran-Israel Conflict is Reshaping Indian Trade" />
+                    <img src="https://ik.imagekit.io/nce7bwsse/website-assets/IMG_4354.webp" alt="Beyond Flavor: Why Spices are the Heartbeat of Our Daily Meals" />
                     <span class="blog-featured-badge">Featured</span>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="blog-featured-content">
-                    <p class="text-uppercase small text-primary mb-2"><i class="bi bi-calendar3 me-1"></i> March 12, 2026</p>
-                    <h2 class="blog-featured-title">Navigating the Storm: How the Iran-Israel Conflict is Reshaping Indian Trade</h2>
-                    <p class="text-muted-custom mb-3">How West Asia tensions, Red Sea detours, and rising freight and insurance costs are reshaping risk, contracts, and margins for Indian exporters.</p>
+                    <p class="text-uppercase small text-primary mb-2"><i class="bi bi-calendar3 me-1"></i> March 16, 2026</p>
+                    <h2 class="blog-featured-title">Beyond Flavor: Why Spices are the Heartbeat of Our Daily Meals</h2>
+                    <p class="text-muted-custom mb-3">Why spices are more than taste enhancers—shaping health, mood, preservation, culture, and cleaner-label cooking in every kitchen.</p>
                     <div class="blog-featured-meta">
-                      <span class="blog-read-time"><i class="bi bi-clock me-1"></i> 7 min read</span>
+                      <span class="blog-read-time"><i class="bi bi-clock me-1"></i> 6 min read</span>
                       <span class="text-primary fw-semibold">Read Article <i class="bi bi-arrow-right ms-1"></i></span>
                     </div>
                   </div>
@@ -35,6 +35,14 @@ $imagekit = IMAGEKIT_CDN;
         </section>
 
         <section class="row g-4" data-fade>
+          <div class="col-md-4">
+            <article class="card-glow p-4 h-100">
+              <p class="text-uppercase small text-primary mb-2">March 16, 2026</p>
+              <h2 class="h5">Beyond Flavor: Why Spices are the Heartbeat of Our Daily Meals</h2>
+              <p class="text-muted-custom small mb-3">How everyday spices act as silent heroes—balancing flavour, wellness, preservation, and cultural connection in modern diets.</p>
+              <a class="text-primary fw-semibold" href="/blog/beyond-flavor-why-spices-heartbeat-daily-meals">Read Article →</a>
+            </article>
+          </div>
           <div class="col-md-4">
             <article class="card-glow p-4 h-100">
               <p class="text-uppercase small text-primary mb-2">March 12, 2026</p>
