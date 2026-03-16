@@ -5,7 +5,7 @@ $imagekit = IMAGEKIT_CDN;
         <!-- Hero Section -->
         <section class="blog-hero" data-fade>
           <div class="blog-hero-image">
-            <img src="<?php echo $imagekit; ?>/website-assets/IMG_4354.webp" alt="Assorted Indian spices showcasing turmeric, cardamom, cumin, and more" />
+            <img src="<?php echo $imagekit; ?>/IMG_4354.webp" alt="Assorted Indian spices showcasing turmeric, cardamom, cumin, and more" />
             <div class="blog-hero-overlay"></div>
           </div>
           <div class="container">
