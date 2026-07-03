@@ -30,6 +30,7 @@ class PageModel {
                 'keywords' => 'Indian spice exporter, premium spices India, turmeric exporter, cardamom supplier, cumin seeds wholesale, black pepper exporter, spice powders, FSSAI certified spices, bulk spice supplier Mumbai, garam masala exporter',
                 'og_image' => IMAGEKIT_CDN . '/export-hero.webp',
                 'active_nav' => 'home',
+                'lcp_preload' => IMAGEKIT_CDN . '/export-hero.webp',
             ],
             'about' => [
                 'title' => 'About Mukta Exports | Premium Indian Spice Exporter Since 2023',

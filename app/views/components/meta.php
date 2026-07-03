@@ -7,6 +7,7 @@ $config = $config ?? [];
 $title = $pageData['title'] ?? 'Mukta Exports';
 $description = $pageData['description'] ?? '';
 $keywords = $pageData['keywords'] ?? '';
+$isHome = ($pageData['active_nav'] ?? '') === 'home';
 
 // Use dynamic canonical URL generation - always matches current page URL
 // This ensures every page has a canonical tag pointing to itself, fixing Google Search Console issues
@@ -14,6 +15,7 @@ $keywords = $pageData['keywords'] ?? '';
 $canonical = isset($pageData['canonical']) ? $pageData['canonical'] : getCanonicalUrl();
 
 $ogImage = $pageData['og_image'] ?? IMAGEKIT_CDN . '/export-hero.webp';
+$lcpPreload = $pageData['lcp_preload'] ?? null;
 ?>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -61,20 +63,31 @@ $ogImage = $pageData['og_image'] ?? IMAGEKIT_CDN . '/export-hero.webp';
 <meta name="geo.position" content="19.2542;72.8568" />
 <meta name="ICBM" content="19.2542, 72.8568" />
 
-<!-- Preconnect for performance -->
+<!-- Preconnect / DNS prefetch for third-party origins -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preconnect" href="https://ik.imagekit.io" />
+<link rel="preconnect" href="https://ik.imagekit.io" crossorigin />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+<?php if (($pageData['active_nav'] ?? '') === 'about'): ?>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+<?php endif; ?>
+
+<?php if ($lcpPreload): ?>
+<link rel="preload" as="image" href="<?php echo htmlspecialchars($lcpPreload); ?>" fetchpriority="high" />
+<?php endif; ?>
+<link rel="preload" href="<?php echo ASSET_CSS; ?>" as="style" />
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+<?php if ($isHome): ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<?php endif; ?>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo GA_TRACKING_ID; ?>"></script>
-<script>
+<!-- Google tag (gtag.js) — deferred to avoid blocking render -->
+<script defer src="https://www.googletagmanager.com/gtag/js?id=<?php echo GA_TRACKING_ID; ?>"></script>
+<script defer>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());

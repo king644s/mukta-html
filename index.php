@@ -22,6 +22,13 @@ spl_autoload_register(function ($class) {
 // Load configuration
 require_once __DIR__ . '/app/config/config.php';
 
+// Dynamic HTML responses should not be cached by browsers/CDNs
+if (!headers_sent()) {
+    header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+    header('Pragma: no-cache');
+    header('Expires: 0');
+}
+
 // Simple routing based on request URI
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD'];

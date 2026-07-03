@@ -5,7 +5,7 @@ $imagekit = IMAGEKIT_CDN;
         <!-- Hero Section -->
         <section class="blog-hero" data-fade>
           <div class="blog-hero-image">
-            <img src="<?php echo $imagekit; ?>/products/whole-spices.webp" alt="Premium Indian Spices - Colorful array of turmeric, cardamom, cinnamon, and more" />
+            <img src="<?php echo $imagekit; ?>/products/whole-spices.webp" alt="Premium Indian Spices - Colorful array of turmeric, cardamom, cinnamon, and more"<?php echo imgPerfAttrs(['fetchpriority' => 'high', 'decoding' => 'async']); ?> />
             <div class="blog-hero-overlay"></div>
           </div>
           <div class="container">
@@ -39,7 +39,7 @@ $imagekit = IMAGEKIT_CDN;
                 <!-- Featured Image - Turmeric -->
                 <figure class="blog-figure" data-fade>
                   <div class="blog-image-wrapper">
-                    <img src="<?php echo $imagekit; ?>/products/turmeric-1.webp" alt="Golden Turmeric - The healing spice of India" class="blog-image" />
+                    <img src="<?php echo $imagekit; ?>/products/turmeric-1.webp" alt="Golden Turmeric - The healing spice of India" <?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> class="blog-image" />
                   </div>
                   <figcaption>Golden Turmeric — known for its high curcumin content and healing properties</figcaption>
                 </figure>
@@ -101,7 +101,7 @@ $imagekit = IMAGEKIT_CDN;
                   <div class="row g-4 mb-4">
                     <div class="col-md-6">
                       <div class="spice-card">
-                        <img src="<?php echo $imagekit; ?>/products/turmeric-powder.webp" alt="Turmeric Powder" class="spice-card-img" />
+                        <img src="<?php echo $imagekit; ?>/products/turmeric-powder.webp" alt="Turmeric Powder" <?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> class="spice-card-img" />
                         <div class="spice-card-content">
                           <h4><i class="bi bi-star-fill text-warning me-2"></i>Turmeric (The Golden Spice)</h4>
                           <p>Sourced from the heartlands of Erode and Nizamabad, our turmeric is high in Curcumin, ideal for both culinary and medicinal use.</p>
@@ -110,7 +110,7 @@ $imagekit = IMAGEKIT_CDN;
                     </div>
                     <div class="col-md-6">
                       <div class="spice-card">
-                        <img src="<?php echo $imagekit; ?>/products/whole-chilli.webp" alt="Red Chilli" class="spice-card-img" />
+                        <img src="<?php echo $imagekit; ?>/products/whole-chilli.webp" alt="Red Chilli" <?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> class="spice-card-img" />
                         <div class="spice-card-content">
                           <h4><i class="bi bi-fire text-danger me-2"></i>Red Chilli</h4>
                           <p>We offer a variety of heat levels, from the vibrant color of Kashmiri chillies to the intense heat of the Guntur variety.</p>
@@ -119,7 +119,7 @@ $imagekit = IMAGEKIT_CDN;
                     </div>
                     <div class="col-md-6">
                       <div class="spice-card">
-                        <img src="<?php echo $imagekit; ?>/products/cumin-seeds.webp" alt="Cumin Seeds" class="spice-card-img" />
+                        <img src="<?php echo $imagekit; ?>/products/cumin-seeds.webp" alt="Cumin Seeds" <?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> class="spice-card-img" />
                         <div class="spice-card-content">
                           <h4><i class="bi bi-flower1 text-primary me-2"></i>Cumin & Coriander</h4>
                           <p>The backbone of curry blends worldwide, our seeds are cleaned and sorted to ensure they are free from foreign matter.</p>
@@ -128,7 +128,7 @@ $imagekit = IMAGEKIT_CDN;
                     </div>
                     <div class="col-md-6">
                       <div class="spice-card">
-                        <img src="<?php echo $imagekit; ?>/products/black-pepper.webp" alt="Black Pepper" class="spice-card-img" />
+                        <img src="<?php echo $imagekit; ?>/products/black-pepper.webp" alt="Black Pepper" <?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> class="spice-card-img" />
                         <div class="spice-card-content">
                           <h4><i class="bi bi-gem text-dark me-2"></i>Black Pepper</h4>
                           <p>Known as "Black Gold," our pepper is sourced from the Malabar coast, famous for its bold size and sharp bite.</p>
@@ -146,19 +146,19 @@ $imagekit = IMAGEKIT_CDN;
                   <div class="row g-4 my-4">
                     <div class="col-md-4">
                       <figure class="blog-figure blog-figure-sm">
-                        <img src="<?php echo $imagekit; ?>/products/cardamom.webp" alt="Green Cardamom" class="blog-image" />
+                        <img src="<?php echo $imagekit; ?>/products/cardamom.webp" alt="Green Cardamom" <?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> class="blog-image" />
                         <figcaption><strong>Cardamom</strong> for digestion</figcaption>
                       </figure>
                     </div>
                     <div class="col-md-4">
                       <figure class="blog-figure blog-figure-sm">
-                        <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Dry%20ginger%20power.webp?updatedAt=1769595950920" alt="Ginger Powder" class="blog-image" />
+                        <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Dry%20ginger%20power.webp?updatedAt=1769595950920" alt="Ginger Powder" <?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> class="blog-image" />
                         <figcaption><strong>Ginger</strong> for immunity</figcaption>
                       </figure>
                     </div>
                     <div class="col-md-4">
                       <figure class="blog-figure blog-figure-sm">
-                        <img src="<?php echo $imagekit; ?>/products/clove.webp" alt="Cloves" class="blog-image" />
+                        <img src="<?php echo $imagekit; ?>/products/clove.webp" alt="Cloves" <?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> class="blog-image" />
                         <figcaption><strong>Clove</strong> for dental health</figcaption>
                       </figure>
                     </div>

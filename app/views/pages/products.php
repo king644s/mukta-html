@@ -13,7 +13,7 @@ $imagekit = IMAGEKIT_CDN;
         <section class="row g-4 mb-5" data-fade>
           <div class="col-md-4">
             <div class="card h-100">
-              <img src="<?php echo $imagekit; ?>/spices-hero.webp" class="card-img-top" alt="Whole spices" />
+              <img src="<?php echo $imagekit; ?>/spices-hero.webp" class="card-img-top" alt="Whole spices"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
               <div class="card-body">
                 <h3 class="card-title h5">Whole Spices</h3>
                 <p class="text-muted-custom small mb-3">Dry red chilli, turmeric finger, cardamom, clove, cinnamon, bay leaves, kasuri methi, star anise, nutmeg, mace, senna leaves, and more.</p>
@@ -23,7 +23,7 @@ $imagekit = IMAGEKIT_CDN;
           </div>
           <div class="col-md-4">
             <div class="card h-100">
-              <img src="<?php echo $imagekit; ?>/seeds-hero.webp" class="card-img-top" alt="Seeds" />
+              <img src="<?php echo $imagekit; ?>/seeds-hero.webp" class="card-img-top" alt="Seeds"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
               <div class="card-body">
                 <h3 class="card-title h5">Seeds & Oils</h3>
                 <p class="text-muted-custom small mb-3">Cumin, coriander, ajwain, fennel, fenugreek, mustard variants, kalonji, dill, and sesame—ready for oil extraction or culinary use.</p>
@@ -33,7 +33,7 @@ $imagekit = IMAGEKIT_CDN;
           </div>
           <div class="col-md-4">
             <div class="card h-100">
-              <img src="<?php echo $imagekit; ?>/powders-hero.webp" class="card-img-top" alt="Powders" />
+              <img src="<?php echo $imagekit; ?>/powders-hero.webp" class="card-img-top" alt="Powders"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
               <div class="card-body">
                 <h3 class="card-title h5">Ground & Dehydrated</h3>
                 <p class="text-muted-custom small mb-3">Chilli, cumin, coriander, turmeric, cinnamon, ginger, black pepper, white pepper, green cardamom, nutmeg, clove, garam masala, mango powder (amchur), and garlic powders plus dehydrated onion and garlic.</p>

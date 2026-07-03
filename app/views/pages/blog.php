@@ -14,7 +14,7 @@ $imagekit = IMAGEKIT_CDN;
               <div class="row g-0">
                 <div class="col-lg-6">
                   <div class="blog-featured-image">
-                    <img src="https://ik.imagekit.io/nce7bwsse/website-assets/IMG_4354.webp" alt="Beyond Flavor: Why Spices are the Heartbeat of Our Daily Meals" />
+                    <img src="https://ik.imagekit.io/nce7bwsse/website-assets/IMG_4354.webp" alt="Beyond Flavor: Why Spices are the Heartbeat of Our Daily Meals"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
                     <span class="blog-featured-badge">Featured</span>
                   </div>
                 </div>

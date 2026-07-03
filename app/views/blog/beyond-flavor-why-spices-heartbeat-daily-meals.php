@@ -5,7 +5,7 @@ $imagekit = IMAGEKIT_CDN;
         <!-- Hero Section -->
         <section class="blog-hero" data-fade>
           <div class="blog-hero-image">
-            <img src="<?php echo $imagekit; ?>/IMG_4354.webp" alt="Assorted Indian spices showcasing turmeric, cardamom, cumin, and more" />
+            <img src="<?php echo $imagekit; ?>/IMG_4354.webp" alt="Assorted Indian spices showcasing turmeric, cardamom, cumin, and more"<?php echo imgPerfAttrs(['fetchpriority' => 'high', 'decoding' => 'async']); ?> />
             <div class="blog-hero-overlay"></div>
           </div>
           <div class="container">
@@ -82,7 +82,7 @@ $imagekit = IMAGEKIT_CDN;
                 <!-- Visual Highlight -->
                 <figure class="blog-figure" data-fade>
                   <div class="blog-image-wrapper">
-                    <img src="<?php echo $imagekit; ?>/products/turmeric-powder.webp" alt="Turmeric powder and whole spices symbolising health and flavor" class="blog-image" />
+                    <img src="<?php echo $imagekit; ?>/products/turmeric-powder.webp" alt="Turmeric powder and whole spices symbolising health and flavor" <?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> class="blog-image" />
                   </div>
                   <figcaption>Premium, pure spices turn everyday meals into a balance of wellness, flavour, and comfort.</figcaption>
                 </figure>

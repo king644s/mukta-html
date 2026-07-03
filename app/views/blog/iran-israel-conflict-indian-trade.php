@@ -5,7 +5,7 @@ $imagekit = IMAGEKIT_CDN;
         <!-- Hero Section -->
         <section class="blog-hero" data-fade>
           <div class="blog-hero-image">
-            <img src="https://ik.imagekit.io/nce7bwsse/website-assets/IMG_4240.webp" alt="Container ship navigating disrupted Middle East trade routes" />
+            <img src="https://ik.imagekit.io/nce7bwsse/website-assets/IMG_4240.webp" alt="Container ship navigating disrupted Middle East trade routes"<?php echo imgPerfAttrs(['fetchpriority' => 'high', 'decoding' => 'async']); ?> />
             <div class="blog-hero-overlay"></div>
           </div>
           <div class="container">
@@ -44,7 +44,7 @@ $imagekit = IMAGEKIT_CDN;
                 <!-- Image Figure -->
                 <figure class="blog-figure" data-fade>
                   <div class="blog-image-wrapper">
-                    <img src="https://ik.imagekit.io/nce7bwsse/website-assets/IMG_4240.webp" alt="Indian export containers rerouted around the Cape of Good Hope" class="blog-image" />
+                    <img src="https://ik.imagekit.io/nce7bwsse/website-assets/IMG_4240.webp" alt="Indian export containers rerouted around the Cape of Good Hope" <?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> class="blog-image" />
                   </div>
                   <figcaption>Indian export flows to Europe, the US and West Asia are being re-routed as carriers avoid the Red Sea and conflict-affected Gulf corridors.</figcaption>
                 </figure>

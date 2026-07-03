@@ -15,7 +15,7 @@ $imagekit = IMAGEKIT_CDN;
               data-lead="Unlocking the authentic flavors of India with traceable sourcing, ethical partnerships, and export precision."
               data-support="We connect discerning kitchens worldwide to premium spices cultivated by farmers who treat soil with reverence."
             >
-              <img src="<?php echo $imagekit; ?>/export-hero.webp" alt="Export ready spices" />
+              <img src="<?php echo $imagekit; ?>/export-hero.webp" alt="Export ready spices"<?php echo imgPerfAttrs(['fetchpriority' => 'high', 'decoding' => 'async']); ?> />
             </div>
             <div
               class="hero-slide swiper-slide"
@@ -24,7 +24,7 @@ $imagekit = IMAGEKIT_CDN;
               data-lead="From Malabar pepper to Alleppey turmeric, our whole spices travel fresh, fragrant, and fully traceable."
               data-support="Partner with a sourcing house that curates terroir-specific lots and preserves every volatile oil."
             >
-              <img src="<?php echo $imagekit; ?>/spices-hero.webp" alt="Premium whole spices" />
+              <img src="<?php echo $imagekit; ?>/spices-hero.webp" alt="Premium whole spices"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
             </div>
             <div
               class="hero-slide swiper-slide"
@@ -33,7 +33,7 @@ $imagekit = IMAGEKIT_CDN;
               data-lead="Oil seeds, decoctions, and ready-to-pack powders milled in BRC-ready facilities for seamless export."
               data-support="We deliver consistent granulation, microbiology compliance, and private-label-ready documentation."
             >
-              <img src="<?php echo $imagekit; ?>/seeds-hero.webp" alt="High-quality seeds" />
+              <img src="<?php echo $imagekit; ?>/seeds-hero.webp" alt="High-quality seeds"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
             </div>
           </div>
         </div>
@@ -224,7 +224,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="row g-4 products-grid">
             <div class="col-md-4" data-fade>
               <div class="card h-100">
-                <img src="<?php echo $imagekit; ?>/spices-hero.webp" class="card-img-top" alt="Whole spices" />
+                <img src="<?php echo $imagekit; ?>/spices-hero.webp" class="card-img-top" alt="Whole spices"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
                 <div class="card-body">
                   <h5 class="card-title fw-bold">Whole Spices</h5>
                   <p class="card-text text-muted-custom">Turmeric, cardamom, cinnamon, nutmeg, cloves, and more with intact essential oils.</p>
@@ -234,7 +234,7 @@ $imagekit = IMAGEKIT_CDN;
             </div>
             <div class="col-md-4" data-fade>
               <div class="card h-100">
-                <img src="<?php echo $imagekit; ?>/seeds-hero.webp" class="card-img-top" alt="Seeds" />
+                <img src="<?php echo $imagekit; ?>/seeds-hero.webp" class="card-img-top" alt="Seeds"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
                 <div class="card-body">
                   <h5 class="card-title fw-bold">Seeds</h5>
                   <p class="card-text text-muted-custom">Cumin, mustard, fennel, fenugreek, coriander, and custom seed mixes for global palates.</p>
@@ -244,7 +244,7 @@ $imagekit = IMAGEKIT_CDN;
             </div>
             <div class="col-md-4" data-fade>
               <div class="card h-100">
-                <img src="<?php echo $imagekit; ?>/powders-hero.webp" class="card-img-top" alt="Spice powders" />
+                <img src="<?php echo $imagekit; ?>/powders-hero.webp" class="card-img-top" alt="Spice powders"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
                 <div class="card-body">
                   <h5 class="card-title fw-bold">Powders & Blends</h5>
                   <p class="card-text text-muted-custom">Finely milled turmeric, chilli, garam masala, garlic, onion, and bespoke blends.</p>

@@ -12,7 +12,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-4 col-sm-6">
             <div class="cert-card h-100">
               <div class="cert-logo-wrapper">
-                <img src="<?php echo $imagekit; ?>/certificates/fssai.webp" alt="FSSAI Logo" class="cert-logo" />
+                <img src="<?php echo $imagekit; ?>/certificates/fssai.webp" alt="FSSAI Logo" class="cert-logo"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
               </div>
               <div class="cert-content">
                 <span class="cert-badge">Certified</span>
@@ -26,7 +26,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-4 col-sm-6">
             <div class="cert-card h-100">
               <div class="cert-logo-wrapper">
-                <img src="<?php echo $imagekit; ?>/certificates/gmp.webp" alt="GMP Logo" class="cert-logo" />
+                <img src="<?php echo $imagekit; ?>/certificates/gmp.webp" alt="GMP Logo" class="cert-logo"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
               </div>
               <div class="cert-content">
                 <span class="cert-badge">Certified</span>
@@ -40,7 +40,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-4 col-sm-6">
             <div class="cert-card h-100">
               <div class="cert-logo-wrapper">
-                <img src="<?php echo $imagekit; ?>/certificates/fda.webp" alt="FDA Logo" class="cert-logo" />
+                <img src="<?php echo $imagekit; ?>/certificates/fda.webp" alt="FDA Logo" class="cert-logo"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
               </div>
               <div class="cert-content">
                 <span class="cert-badge">Certified</span>
@@ -54,7 +54,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-4 col-sm-6">
             <div class="cert-card h-100">
               <div class="cert-logo-wrapper">
-                <img src="<?php echo $imagekit; ?>/certificates/spice.webp" alt="Spice Board Logo" class="cert-logo" />
+                <img src="<?php echo $imagekit; ?>/certificates/spice.webp" alt="Spice Board Logo" class="cert-logo"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
               </div>
               <div class="cert-content">
                 <span class="cert-badge">Registered</span>
@@ -68,7 +68,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-4 col-sm-6">
             <div class="cert-card h-100">
               <div class="cert-logo-wrapper">
-                <img src="<?php echo $imagekit; ?>/certificates/dgft.webp" alt="DGFT Logo" class="cert-logo" />
+                <img src="<?php echo $imagekit; ?>/certificates/dgft.webp" alt="DGFT Logo" class="cert-logo"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
               </div>
               <div class="cert-content">
                 <span class="cert-badge">Registered</span>
@@ -82,7 +82,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-4 col-sm-6">
             <div class="cert-card h-100">
               <div class="cert-logo-wrapper">
-                <img src="<?php echo $imagekit; ?>/certificates/gst.webp" alt="GST Logo" class="cert-logo" />
+                <img src="<?php echo $imagekit; ?>/certificates/gst.webp" alt="GST Logo" class="cert-logo"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
               </div>
               <div class="cert-content">
                 <span class="cert-badge">Registered</span>
@@ -96,7 +96,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-4 col-sm-6">
             <div class="cert-card h-100">
               <div class="cert-logo-wrapper">
-                <img src="<?php echo $imagekit; ?>/certificates/msme.webp" alt="MSME Logo" class="cert-logo" />
+                <img src="<?php echo $imagekit; ?>/certificates/msme.webp" alt="MSME Logo" class="cert-logo"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
               </div>
               <div class="cert-content">
                 <span class="cert-badge">Registered</span>

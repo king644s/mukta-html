@@ -28,15 +28,49 @@ if (preg_match('/\.php$/', $path) && basename($path) !== 'index.php' && strpos($
     exit;
 }
 
-// Serve static files (CSS, JS, images, XML, text) if they exist
-// Note: adding 'xml' and 'txt' ensures files like sitemap.xml and robots.txt
-// are served directly instead of being routed through index.php.
-$staticExtensions = ['css', 'js', 'jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'ico', 'woff', 'woff2', 'ttf', 'eot', 'pdf', 'xml', 'txt'];
+$mimeTypes = [
+    'css' => 'text/css; charset=UTF-8',
+    'js' => 'application/javascript; charset=UTF-8',
+    'jpg' => 'image/jpeg',
+    'jpeg' => 'image/jpeg',
+    'png' => 'image/png',
+    'gif' => 'image/gif',
+    'webp' => 'image/webp',
+    'svg' => 'image/svg+xml',
+    'ico' => 'image/x-icon',
+    'woff' => 'font/woff',
+    'woff2' => 'font/woff2',
+    'ttf' => 'font/ttf',
+    'eot' => 'application/vnd.ms-fontobject',
+    'pdf' => 'application/pdf',
+    'xml' => 'application/xml; charset=UTF-8',
+    'txt' => 'text/plain; charset=UTF-8',
+];
+
+$staticExtensions = array_keys($mimeTypes);
 $pathInfo = pathinfo($path);
-if (isset($pathInfo['extension']) && in_array(strtolower($pathInfo['extension']), $staticExtensions)) {
+if (isset($pathInfo['extension']) && in_array(strtolower($pathInfo['extension']), $staticExtensions, true)) {
     $filePath = __DIR__ . $path;
     if (file_exists($filePath) && is_file($filePath)) {
-        return false; // Let PHP serve the static file
+        $ext = strtolower($pathInfo['extension']);
+        $basename = basename($path);
+
+        if (preg_match('/\.v\d+\.(css|js)$/', $basename)) {
+            header('Cache-Control: public, max-age=31536000, immutable');
+        } elseif (in_array($ext, ['css', 'js'], true)) {
+            header('Cache-Control: public, max-age=2592000, stale-while-revalidate=86400');
+        } elseif (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'ico', 'woff', 'woff2', 'ttf', 'eot'], true)) {
+            header('Cache-Control: public, max-age=31536000, immutable');
+        } elseif ($basename === 'sitemap.xml' || $basename === 'robots.txt') {
+            header('Cache-Control: public, max-age=86400, stale-while-revalidate=43200');
+        } elseif ($ext === 'pdf') {
+            header('Cache-Control: public, max-age=2592000');
+        }
+
+        header('Content-Type: ' . $mimeTypes[$ext]);
+        header('Content-Length: ' . filesize($filePath));
+        readfile($filePath);
+        return true;
     }
 }
 

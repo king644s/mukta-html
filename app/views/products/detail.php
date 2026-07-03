@@ -18,7 +18,7 @@ $categorySlug = $product['category_slug'];
           <!-- Product Image -->
           <div class="col-lg-6" data-fade>
             <div class="product-image-wrapper">
-              <img src="<?php echo (strpos($product['image'], 'http') === 0) ? $product['image'] : $imagekit . '/products/' . $product['image']; ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="img-fluid rounded-3 shadow-sm" />
+              <img src="<?php echo (strpos($product['image'], 'http') === 0) ? $product['image'] : $imagekit . '/products/' . $product['image']; ?>" alt="<?php echo htmlspecialchars($product['name']); ?>" class="img-fluid rounded-3 shadow-sm"<?php echo imgPerfAttrs(['fetchpriority' => 'high', 'decoding' => 'async']); ?> />
             </div>
           </div>
 

@@ -107,6 +107,29 @@ if (!defined('SMTP_FROM_NAME')) {
 // ImageKit CDN
 define('IMAGEKIT_CDN', 'https://ik.imagekit.io/nce7bwsse/website-assets');
 
+// Versioned static assets (bump version in filename when contents change)
+define('ASSET_CSS', '/styles.v3.css');
+define('ASSET_JS', '/script.v2.js');
+
+/**
+ * Build optional img performance attributes
+ */
+function imgPerfAttrs(array $opts = []): string {
+    $attrs = [];
+    foreach (['loading', 'fetchpriority', 'decoding'] as $key) {
+        if (!empty($opts[$key])) {
+            $attrs[] = $key . '="' . htmlspecialchars($opts[$key], ENT_QUOTES, 'UTF-8') . '"';
+        }
+    }
+    if (isset($opts['width'])) {
+        $attrs[] = 'width="' . (int) $opts['width'] . '"';
+    }
+    if (isset($opts['height'])) {
+        $attrs[] = 'height="' . (int) $opts['height'] . '"';
+    }
+    return $attrs ? ' ' . implode(' ', $attrs) : '';
+}
+
 // Paths
 define('VIEWS_PATH', BASE_PATH . '/app/views');
 define('COMPONENTS_PATH', VIEWS_PATH . '/components');

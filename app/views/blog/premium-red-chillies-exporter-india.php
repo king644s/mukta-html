@@ -5,7 +5,7 @@ $imagekit = IMAGEKIT_CDN;
         <!-- Hero Section -->
         <section class="blog-hero" data-fade>
           <div class="blog-hero-image">
-            <img src="<?php echo $imagekit; ?>/products/whole-chilli.webp" alt="Premium Red Chillies - Mukta Exports India's Premier Red Chilli Exporter" />
+            <img src="<?php echo $imagekit; ?>/products/whole-chilli.webp" alt="Premium Red Chillies - Mukta Exports India's Premier Red Chilli Exporter"<?php echo imgPerfAttrs(['fetchpriority' => 'high', 'decoding' => 'async']); ?> />
             <div class="blog-hero-overlay"></div>
           </div>
           <div class="container">
@@ -38,7 +38,7 @@ $imagekit = IMAGEKIT_CDN;
                 <!-- Featured Image -->
                 <figure class="blog-figure" data-fade>
                   <div class="blog-image-wrapper">
-                    <img src="<?php echo $imagekit; ?>/products/whole-chilli.webp" alt="Premium Red Chillies from India - Mukta Exports" class="blog-image" />
+                    <img src="<?php echo $imagekit; ?>/products/whole-chilli.webp" alt="Premium Red Chillies from India - Mukta Exports" <?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> class="blog-image" />
                   </div>
                   <figcaption>Premium Red Chillies — India's finest export quality chillies with vibrant color and intense flavor</figcaption>
                 </figure>

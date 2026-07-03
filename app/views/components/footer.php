@@ -3,6 +3,7 @@
  * Footer Component
  */
 $config = $config ?? [];
+$isHome = ($pageData['active_nav'] ?? '') === 'home';
 ?>
     </main>
 
@@ -11,7 +12,7 @@ $config = $config ?? [];
         <div class="footer-content">
           <div class="footer-section footer-brand">
             <div class="footer-brand-header">
-              <img src="<?php echo IMAGEKIT_CDN; ?>/mukta-icon.svg" alt="<?php echo SITE_NAME; ?>" height="40" class="footer-logo" />
+              <img src="<?php echo IMAGEKIT_CDN; ?>/mukta-icon.svg" alt="<?php echo SITE_NAME; ?>" height="40" width="40" class="footer-logo"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
               <span class="footer-brand-name"><?php echo SITE_NAME; ?></span>
             </div>
             <p class="footer-tagline">Premium quality spices, seeds, and powders for global markets.</p>
@@ -73,10 +74,12 @@ $config = $config ?? [];
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="/script.v2.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<?php if ($isHome): ?>
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<?php endif; ?>
+    <script defer src="<?php echo ASSET_JS; ?>"></script>
   </body>
 </html>

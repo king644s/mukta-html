@@ -15,14 +15,14 @@ $config = $config ?? [];
     <?php if ($activeNav === 'about'): ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <?php endif; ?>
-    <link rel="stylesheet" href="/styles.v3.css" />
+    <link rel="stylesheet" href="<?php echo ASSET_CSS; ?>" />
   </head>
   <body data-bs-spy="scroll" data-bs-target="#mainNav">
     <header class="sticky-top shadow-sm">
       <nav id="mainNav" class="navbar navbar-expand-lg bg-glass py-3">
         <div class="container">
           <a class="navbar-brand d-flex align-items-center" href="/#hero">
-            <img src="<?php echo IMAGEKIT_CDN; ?>/muktalogo.svg" alt="<?php echo SITE_NAME; ?>" height="48" class="me-2" />
+            <img src="<?php echo IMAGEKIT_CDN; ?>/muktalogo.svg" alt="<?php echo SITE_NAME; ?>" height="48" width="48" class="me-2"<?php echo imgPerfAttrs(['fetchpriority' => 'high', 'decoding' => 'async']); ?> />
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

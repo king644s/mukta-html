@@ -18,7 +18,7 @@ $imagekit = IMAGEKIT_CDN;
         <section class="row g-4" data-fade>
           <div class="col-md-6 col-lg-4">
             <div class="card h-100">
-              <img src="<?php echo $imagekit; ?>/products/whole-spices.webp" class="card-img-top" alt="Whole spices assortment" />
+              <img src="<?php echo $imagekit; ?>/products/whole-spices.webp" class="card-img-top" alt="Whole spices assortment"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
               <div class="card-body">
                 <h3 class="h5">Whole Spices Collection</h3>
                 <p class="text-muted-custom small">Carefully sourced selection processed to preserve aroma and export quality.</p>
@@ -32,7 +32,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/spices/turmeric" class="text-decoration-none text-dark">
-                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Turmeric.webp" class="card-img-top" alt="Turmeric" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Turmeric.webp" class="card-img-top" alt="Turmeric"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
                 <div class="card-body">
                   <h3 class="h5">Turmeric</h3>
                   <p class="text-muted-custom small">High curcumin fingers, sun-dried for color and potency.</p>
@@ -50,7 +50,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/spices/cardamom" class="text-decoration-none text-dark">
-                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Cardamom.webp" class="card-img-top" alt="Cardamom" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Cardamom.webp" class="card-img-top" alt="Cardamom"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
                 <div class="card-body">
                   <h3 class="h5">Cardamom</h3>
                   <p class="text-muted-custom small">Extra bold pods with intense aroma and uniform grading.</p>
@@ -68,7 +68,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/spices/cinnamon" class="text-decoration-none text-dark">
-                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Cinnamon%20sticks.webp" class="card-img-top" alt="Cinnamon" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Cinnamon%20sticks.webp" class="card-img-top" alt="Cinnamon"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
                 <div class="card-body">
                   <h3 class="h5">Cinnamon</h3>
                   <p class="text-muted-custom small">Ceylon cinnamon sticks with essential oils intact.</p>
@@ -85,7 +85,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/spices/clove" class="text-decoration-none text-dark">
-                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Clove.webp" class="card-img-top" alt="Clove" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Clove.webp" class="card-img-top" alt="Clove"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
                 <div class="card-body">
                   <h3 class="h5">Clove</h3>
                   <p class="text-muted-custom small">Whole cloves with high oil content and strong aroma.</p>
@@ -102,7 +102,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/spices/nutmeg" class="text-decoration-none text-dark">
-                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Nutmeg.webp" class="card-img-top" alt="Nutmeg" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Nutmeg.webp" class="card-img-top" alt="Nutmeg"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
                 <div class="card-body">
                   <h3 class="h5">Nutmeg</h3>
                   <p class="text-muted-custom small">Warm, rich flavor with essential oils preserved.</p>
@@ -119,7 +119,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/spices/black-pepper" class="text-decoration-none text-dark">
-                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Black%20pepper.webp" class="card-img-top" alt="Black Pepper" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Black%20pepper.webp" class="card-img-top" alt="Black Pepper"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
                 <div class="card-body">
                   <h3 class="h5">Black Pepper</h3>
                   <p class="text-muted-custom small">Sun-dried corns with bold pungency and high piperine.</p>
@@ -136,7 +136,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/spices/mace" class="text-decoration-none text-dark">
-                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Mace.webp" class="card-img-top" alt="Mace" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Mace.webp" class="card-img-top" alt="Mace"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
                 <div class="card-body">
                   <h3 class="h5">Mace</h3>
                   <p class="text-muted-custom small">Delicate, aromatic spice with warm, sweet flavor.</p>
@@ -154,7 +154,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="col-md-6 col-lg-4">
             <div class="card h-100 product-card">
               <a href="/products/spices/red-chilli" class="text-decoration-none text-dark">
-                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Red%20chilli.webp" class="card-img-top" alt="Red Chilli" />
+                <img src="https://ik.imagekit.io/nce7bwsse/website-assets/products/new-set/Red%20chilli.webp" class="card-img-top" alt="Red Chilli"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
                 <div class="card-body">
                   <h3 class="h5">Dry Red Chilli</h3>
                   <p class="text-muted-custom small">Fiery heat with vibrant color, sun-dried whole chillies.</p>

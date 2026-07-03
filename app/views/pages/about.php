@@ -43,7 +43,7 @@ $imagekit = IMAGEKIT_CDN;
           <div class="founder-card">
             <div class="founder-image-wrapper">
               <div class="founder-image-frame">
-                <img src="<?php echo $imagekit; ?>/founder-image.webp" alt="Yash Ghaghda - Founder & Partner" class="founder-image" />
+                <img src="<?php echo $imagekit; ?>/founder-image.webp" alt="Yash Ghaghda - Founder & Partner" class="founder-image"<?php echo imgPerfAttrs(['loading' => 'lazy', 'decoding' => 'async']); ?> />
               </div>
               <div class="founder-accent"></div>
             </div>
